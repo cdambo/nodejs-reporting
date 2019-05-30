@@ -1,0 +1,10 @@
+{
+  "name": "reporting",
+  "version": "1.0.0",
+  "description": "Reporting of metrics, logs and tracing for Node.js applications",
+  "main": "index.js",
+  "repository": "git@github.com:cdambo/reporting.git",
+  "author": "Chanan Damboritz",
+  "license": "MIT",
+  "private": true
+}

@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsDReporter Constructor Creates a StatsDReporter 1`] = `
+StatsDReporter {
+  "client": Client {
+    "ephemeral_socket": null,
+    "global_tags": Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+    "host": "host",
+    "last_used_timer": null,
+    "port": 5678,
+    "socket": null,
+  },
+}
+`;
+
+exports[`StatsDReporter Constructor Creates a StatsDReporter with a default port value 1`] = `
+StatsDReporter {
+  "client": Client {
+    "ephemeral_socket": null,
+    "global_tags": Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+    "host": "host",
+    "last_used_timer": null,
+    "port": 8125,
+    "socket": null,
+  },
+}
+`;
+
+exports[`StatsDReporter close Closes the socket 1`] = `
+Array [
+  Array [],
+]
+`;
+
+exports[`StatsDReporter decrement Reports counter metric 1`] = `
+Array [
+  Array [
+    "decrement_test",
+    0.5,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter decrementBy Reports counter metric 1`] = `
+Array [
+  Array [
+    "decrement_by_test",
+    10,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter gauge Reports gauge metric 1`] = `
+Array [
+  Array [
+    "gauge_test",
+    10,
+    0.5,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter histogram Reports histogram metric 1`] = `
+Array [
+  Array [
+    "histogram_test",
+    20,
+    0.5,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter increment Reports counter metric 1`] = `
+Array [
+  Array [
+    "increment_test",
+    0.5,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter incrementBy Reports counter metric 1`] = `
+Array [
+  Array [
+    "increment_by_test",
+    10,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter timing Reports timing metric 1`] = `
+Array [
+  Array [
+    "timing_test",
+    20,
+    0.5,
+    Array [
+      "tag_1:one",
+      "tag_2:two",
+    ],
+  ],
+]
+`;

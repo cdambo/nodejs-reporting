@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": [Function],
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter with a default format value 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": [Function],
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter with a default output value 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": [Function],
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter without arguments 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {},
+  },
+  "format": [Function],
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter decrement Reports counter metric 1`] = `
+Array [
+  Array [
+    "DECREMENT",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter decrementBy Reports counter metric 1`] = `
+Array [
+  Array [
+    "DECREMENT",
+    Object {
+      "stat": "decrement_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter gauge Reports gauge metric 1`] = `
+Array [
+  Array [
+    "GAUGE",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter histogram Reports histogram metric 1`] = `
+Array [
+  Array [
+    "HISTOGRAM",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter increment Reports counter metric 1`] = `
+Array [
+  Array [
+    "INCREMENT",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter incrementBy Reports counter metric 1`] = `
+Array [
+  Array [
+    "INCREMENT",
+    Object {
+      "stat": "increment_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter timing Reports timing metric 1`] = `
+Array [
+  Array [
+    "TIME",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "timing_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;

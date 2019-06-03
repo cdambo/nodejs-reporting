@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Context mergeTags Empty globalTags Returns a merged object of tags 1`] = `
+Object {
+  "b": 2,
+}
+`;
+
+exports[`Context mergeTags Empty tags Returns a merged object of tags 1`] = `
+Object {
+  "a": 1,
+}
+`;
+
+exports[`Context mergeTags Returns a merged object of tags 1`] = `
+Object {
+  "a": 1,
+  "b": 2,
+}
+`;
+
+exports[`Context mergeTags Undefined tags Returns a merged object of tags 1`] = `
+Object {
+  "a": 1,
+}
+`;

@@ -3,8 +3,43 @@
   "version": "1.0.0",
   "description": "Reporting of metrics, logs and tracing for Node.js applications",
   "main": "index.js",
-  "repository": "git@github.com:cdambo/reporting.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdambo/reporting.git"
+  },
   "author": "Chanan Damboritz",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
+    "lint": "eslint src/ test/ --ext .ts,.js",
+    "lint-fix": "yarn lint --fix"
+  },
+  "eslintIgnore": [
+    "dist/"
+  ],
+  "typings": "./index.d.ts",
+  "dependencies": {
+    "@types/jest": "^24.0.13",
+    "lodash": "^4.17.11",
+    "node-dogstatsd": "^0.0.7"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.132",
+    "@types/node-dogstatsd": "^0.0.4",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "jest-junit": "^6.4.0",
+    "prettier": "^1.17.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
+  }
 }

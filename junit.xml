@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="41" failures="0" time="2.284">
+  <testsuite name="InMemoryReporter" errors="0" failures="0" skipped="0" timestamp="2019-06-03T13:20:16" time="1.764" tests="12">
+    <testcase classname="InMemoryReporter Constructor Creates an InMemoryReporter" name="InMemoryReporter Constructor Creates an InMemoryReporter" time="0.005">
+    </testcase>
+    <testcase classname="InMemoryReporter Constructor Creates an InMemoryReporter with a default format value" name="InMemoryReporter Constructor Creates an InMemoryReporter with a default format value" time="0">
+    </testcase>
+    <testcase classname="InMemoryReporter Constructor Creates an InMemoryReporter without arguments" name="InMemoryReporter Constructor Creates an InMemoryReporter without arguments" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter timing Reports timing metric" name="InMemoryReporter timing Reports timing metric" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter increment Reports counter metric" name="InMemoryReporter increment Reports counter metric" time="0.004">
+    </testcase>
+    <testcase classname="InMemoryReporter incrementBy Reports counter metric" name="InMemoryReporter incrementBy Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter decrement Reports counter metric" name="InMemoryReporter decrement Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter decrementBy Reports counter metric" name="InMemoryReporter decrementBy Reports counter metric" time="0">
+    </testcase>
+    <testcase classname="InMemoryReporter gauge Reports gauge metric" name="InMemoryReporter gauge Reports gauge metric" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter histogram Reports histogram metric" name="InMemoryReporter histogram Reports histogram metric" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter flush Flushes all reports from memory" name="InMemoryReporter flush Flushes all reports from memory" time="0.001">
+    </testcase>
+    <testcase classname="InMemoryReporter reports Saves all reports in memory" name="InMemoryReporter reports Saves all reports in memory" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ConsoleReporter" errors="0" failures="0" skipped="0" timestamp="2019-06-03T13:20:18" time="0.076" tests="11">
+    <testcase classname="ConsoleReporter Constructor Creates a ConsoleReporter" name="ConsoleReporter Constructor Creates a ConsoleReporter" time="0.002">
+    </testcase>
+    <testcase classname="ConsoleReporter Constructor Creates a ConsoleReporter with a default output value" name="ConsoleReporter Constructor Creates a ConsoleReporter with a default output value" time="0">
+    </testcase>
+    <testcase classname="ConsoleReporter Constructor Creates a ConsoleReporter with a default format value" name="ConsoleReporter Constructor Creates a ConsoleReporter with a default format value" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter Constructor Creates a ConsoleReporter without arguments" name="ConsoleReporter Constructor Creates a ConsoleReporter without arguments" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter timing Reports timing metric" name="ConsoleReporter timing Reports timing metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter increment Reports counter metric" name="ConsoleReporter increment Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter incrementBy Reports counter metric" name="ConsoleReporter incrementBy Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter decrement Reports counter metric" name="ConsoleReporter decrement Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter decrementBy Reports counter metric" name="ConsoleReporter decrementBy Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter gauge Reports gauge metric" name="ConsoleReporter gauge Reports gauge metric" time="0.001">
+    </testcase>
+    <testcase classname="ConsoleReporter histogram Reports histogram metric" name="ConsoleReporter histogram Reports histogram metric" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="StatsDReporter" errors="0" failures="0" skipped="0" timestamp="2019-06-03T13:20:18" time="0.073" tests="10">
+    <testcase classname="StatsDReporter Constructor Creates a StatsDReporter" name="StatsDReporter Constructor Creates a StatsDReporter" time="0.002">
+    </testcase>
+    <testcase classname="StatsDReporter Constructor Creates a StatsDReporter with a default port value" name="StatsDReporter Constructor Creates a StatsDReporter with a default port value" time="0">
+    </testcase>
+    <testcase classname="StatsDReporter timing Reports timing metric" name="StatsDReporter timing Reports timing metric" time="0">
+    </testcase>
+    <testcase classname="StatsDReporter increment Reports counter metric" name="StatsDReporter increment Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="StatsDReporter incrementBy Reports counter metric" name="StatsDReporter incrementBy Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="StatsDReporter decrement Reports counter metric" name="StatsDReporter decrement Reports counter metric" time="0">
+    </testcase>
+    <testcase classname="StatsDReporter decrementBy Reports counter metric" name="StatsDReporter decrementBy Reports counter metric" time="0.001">
+    </testcase>
+    <testcase classname="StatsDReporter gauge Reports gauge metric" name="StatsDReporter gauge Reports gauge metric" time="0.001">
+    </testcase>
+    <testcase classname="StatsDReporter histogram Reports histogram metric" name="StatsDReporter histogram Reports histogram metric" time="0.001">
+    </testcase>
+    <testcase classname="StatsDReporter close Closes the socket" name="StatsDReporter close Closes the socket" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Context" errors="0" failures="0" skipped="0" timestamp="2019-06-03T13:20:18" time="0.048" tests="4">
+    <testcase classname="Context mergeTags Returns a merged object of tags" name="Context mergeTags Returns a merged object of tags" time="0.001">
+    </testcase>
+    <testcase classname="Context mergeTags Empty globalTags Returns a merged object of tags" name="Context mergeTags Empty globalTags Returns a merged object of tags" time="0">
+    </testcase>
+    <testcase classname="Context mergeTags Empty tags Returns a merged object of tags" name="Context mergeTags Empty tags Returns a merged object of tags" time="0.001">
+    </testcase>
+    <testcase classname="Context mergeTags Undefined tags Returns a merged object of tags" name="Context mergeTags Undefined tags Returns a merged object of tags" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="StatsDMetricObjectFormat" errors="0" failures="0" skipped="0" timestamp="2019-06-03T13:20:18" time="0.046" tests="4">
+    <testcase classname="StatsDMetricObjectFormat Formats the metric to an object" name="StatsDMetricObjectFormat Formats the metric to an object" time="0.001">
+    </testcase>
+    <testcase classname="StatsDMetricObjectFormat Formats the tags to snake case keys" name="StatsDMetricObjectFormat Formats the tags to snake case keys" time="0.001">
+    </testcase>
+    <testcase classname="StatsDMetricObjectFormat Removes leading non-letters from metric name" name="StatsDMetricObjectFormat Removes leading non-letters from metric name" time="0">
+    </testcase>
+    <testcase classname="StatsDMetricObjectFormat Replaces with an underscore characters that are not ASCII alphanumerics, underscores, or periods in metric name" name="StatsDMetricObjectFormat Replaces with an underscore characters that are not ASCII alphanumerics, underscores, or periods in metric name" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>

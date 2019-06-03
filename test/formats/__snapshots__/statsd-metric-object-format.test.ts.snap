@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsDMetricObjectFormat Formats the metric to an object 1`] = `
+Object {
+  "a": 1,
+  "b": 2,
+  "stat": "metric_name",
+  "tags": Object {},
+}
+`;
+
+exports[`StatsDMetricObjectFormat Formats the tags to snake case keys 1`] = `
+Object {
+  "a": 1,
+  "b": 2,
+  "stat": "metric_name",
+  "tags": Object {
+    "another_tag": 5,
+    "camel_case_tag_1": "tagOne",
+    "camel_case_tag_2": "tag_two",
+  },
+}
+`;
+
+exports[`StatsDMetricObjectFormat Removes leading non-letters from metric name 1`] = `
+Object {
+  "stat": "a_real_metric",
+  "tags": Object {},
+}
+`;
+
+exports[`StatsDMetricObjectFormat Replaces with an underscore characters that are not ASCII alphanumerics, underscores, or periods in metric name 1`] = `
+Object {
+  "stat": "a_real_Metric.Name_with_bad_chars___________9",
+  "tags": Object {},
+}
+`;

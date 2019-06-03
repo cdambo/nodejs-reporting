@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InMemoryReporter Constructor Creates an InMemoryReporter 1`] = `
+InMemoryReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": [Function],
+  "reports": Array [],
+}
+`;
+
+exports[`InMemoryReporter Constructor Creates an InMemoryReporter with a default format value 1`] = `
+InMemoryReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": [Function],
+  "reports": Array [],
+}
+`;
+
+exports[`InMemoryReporter Constructor Creates an InMemoryReporter without arguments 1`] = `
+InMemoryReporter {
+  "context": Context {
+    "globalTags": Object {},
+  },
+  "format": [Function],
+  "reports": Array [],
+}
+`;
+
+exports[`InMemoryReporter decrement Reports counter metric 1`] = `
+Array [
+  Object {
+    "decrement": Object {
+      "sampleRate": 0.5,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter decrementBy Reports counter metric 1`] = `
+Array [
+  Object {
+    "decrement": Object {
+      "stat": "decrement_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter flush Flushes all reports from memory 1`] = `Array []`;
+
+exports[`InMemoryReporter gauge Reports gauge metric 1`] = `
+Array [
+  Object {
+    "gauge": Object {
+      "sampleRate": 0.5,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter histogram Reports histogram metric 1`] = `
+Array [
+  Object {
+    "histogram": Object {
+      "sampleRate": 0.5,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter increment Reports counter metric 1`] = `
+Array [
+  Object {
+    "increment": Object {
+      "sampleRate": 0.5,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter incrementBy Reports counter metric 1`] = `
+Array [
+  Object {
+    "increment": Object {
+      "stat": "increment_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter reports Saves all reports in memory 1`] = `
+Array [
+  Object {
+    "time": Object {
+      "sampleRate": 0.5,
+      "stat": "timing_test",
+      "tags": Object {
+        "globalTag1": "global_one",
+        "globalTag2": "global_two",
+        "tag1": "one",
+        "tag2": "two",
+      },
+      "time": 20,
+    },
+  },
+  Object {
+    "increment": Object {
+      "sampleRate": 0.5,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  },
+  Object {
+    "decrement": Object {
+      "sampleRate": 0.5,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+    },
+  },
+  Object {
+    "gauge": Object {
+      "sampleRate": 0.5,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "value": 10,
+    },
+  },
+  Object {
+    "histogram": Object {
+      "sampleRate": 0.5,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter timing Reports timing metric 1`] = `
+Array [
+  Object {
+    "time": Object {
+      "sampleRate": 0.5,
+      "stat": "timing_test",
+      "tags": Object {
+        "globalTag1": "global_one",
+        "globalTag2": "global_two",
+        "tag1": "one",
+        "tag2": "two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;

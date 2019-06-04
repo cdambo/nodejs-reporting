@@ -1,18 +1,18 @@
-import Context from "../context";
-import Reporter, { ReporterConfig } from "./reporter";
+import Context from "../../context";
+import MetricsReporter, { MetricsReporterConfig } from "./metrics-reporter";
 import Format from "../formats/format";
 import StatsDMetricObjectFormat from "../formats/statsd-metric-object-format";
 
-interface InMemoryReporterConfig extends ReporterConfig {
-  format?: Format.FormatFunction;
+interface InMemoryReporterConfig extends MetricsReporterConfig {
+  format?: Format;
 }
 
-export default class InMemoryReporter implements Reporter {
+export default class InMemoryReporter implements MetricsReporter {
   public reports: object[];
 
   private readonly context: Context;
 
-  private readonly format: Format.FormatFunction;
+  private readonly format: Format;
 
   public constructor({
     globalTags,
@@ -34,18 +34,18 @@ export default class InMemoryReporter implements Reporter {
     tags?: object
   ): void {
     this.reports.push({
-      time: {
+      time: this.format.format({
         stat,
         time,
         sampleRate,
         tags: this.context.mergeTags(tags)
-      }
+      })
     });
   }
 
   public increment(stat: string, sampleRate?: number, tags?: object): void {
     this.reports.push({
-      increment: this.format({
+      increment: this.format.format({
         stat,
         sampleRate,
         tags: this.context.mergeTags(tags)
@@ -55,7 +55,7 @@ export default class InMemoryReporter implements Reporter {
 
   public incrementBy(stat: string, value: number, tags?: object): void {
     this.reports.push({
-      increment: this.format({
+      increment: this.format.format({
         stat,
         value,
         tags: this.context.mergeTags(tags)
@@ -65,7 +65,7 @@ export default class InMemoryReporter implements Reporter {
 
   public decrement(stat: string, sampleRate?: number, tags?: object): void {
     this.reports.push({
-      decrement: this.format({
+      decrement: this.format.format({
         stat,
         sampleRate,
         tags: this.context.mergeTags(tags)
@@ -75,7 +75,7 @@ export default class InMemoryReporter implements Reporter {
 
   public decrementBy(stat: string, value: number, tags?: object): void {
     this.reports.push({
-      decrement: this.format({
+      decrement: this.format.format({
         stat,
         value,
         tags: this.context.mergeTags(tags)
@@ -90,7 +90,7 @@ export default class InMemoryReporter implements Reporter {
     tags?: object
   ): void {
     this.reports.push({
-      gauge: this.format({
+      gauge: this.format.format({
         stat,
         value,
         sampleRate,
@@ -106,7 +106,7 @@ export default class InMemoryReporter implements Reporter {
     tags?: object
   ): void {
     this.reports.push({
-      histogram: this.format({
+      histogram: this.format.format({
         stat,
         time,
         sampleRate,

@@ -1,8 +1,8 @@
-export interface ReporterConfig {
+export interface MetricsReporterConfig {
   globalTags?: object;
 }
 
-export default interface Reporter {
+export default interface MetricsReporter {
   timing(stat: string, time: number, sampleRate?: number, tags?: object): void;
 
   increment(stat: string, sampleRate?: number, tags?: object): void;

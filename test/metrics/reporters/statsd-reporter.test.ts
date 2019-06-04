@@ -1,52 +1,59 @@
-import ConsoleReporter from "../../src/reporters/console-reporter";
+import { StatsD } from "node-dogstatsd";
+import StatsDReporter from "../../../src/metrics/reporters/statsd-reporter";
+import { StatsDArgs, StatsDFormat } from "../../../src/metrics/formats/format";
 
-const getReporter = (): ConsoleReporter =>
-  new ConsoleReporter({
+const getReporter = (): StatsDReporter =>
+  new StatsDReporter({
+    host: "host",
     globalTags: { globalTag1: "global_one", globalTag2: "global_two" }
   });
 
-describe("ConsoleReporter", (): void => {
+describe("StatsDReporter", (): void => {
   describe("Constructor", (): void => {
-    it("Creates a ConsoleReporter", (): void => {
-      const output = (): void => {};
-      const format = (): string => "Format";
-      const reporter = new ConsoleReporter({
-        output,
-        format,
+    it("Creates a StatsDReporter", (): void => {
+      const reporter = new StatsDReporter();
+      expect(reporter).toMatchSnapshot();
+    });
+
+    it("Creates a StatsDReporter with global tags", (): void => {
+      const reporter = new StatsDReporter({
         globalTags: { globalTag1: "global_one", globalTag2: "global_two" }
       });
       expect(reporter).toMatchSnapshot();
     });
 
-    it("Creates a ConsoleReporter with a default output value", (): void => {
-      const format = (): string => "Format";
-      const reporter = new ConsoleReporter({
-        format,
-        globalTags: { globalTag1: "global_one", globalTag2: "global_two" }
+    it("Creates a StatsDReporter with a client", (): void => {
+      const reporter = new StatsDReporter({
+        client: new StatsD("host", 8888, null)
       });
       expect(reporter).toMatchSnapshot();
     });
 
-    it("Creates a ConsoleReporter with a default format value", (): void => {
-      const output = (): void => {};
-      const reporter = new ConsoleReporter({
-        output,
-        globalTags: { globalTag1: "global_one", globalTag2: "global_two" }
-      });
+    it("Creates a StatsDReporter with a host", (): void => {
+      const reporter = new StatsDReporter({ host: "host" });
       expect(reporter).toMatchSnapshot();
     });
 
-    it("Creates a ConsoleReporter without arguments", (): void => {
-      const reporter = new ConsoleReporter();
+    it("Creates a StatsDReporter with a port", (): void => {
+      const reporter = new StatsDReporter({ port: 5555 });
+      expect(reporter).toMatchSnapshot();
+    });
+
+    it("Creates a StatsDReporter with a format", (): void => {
+      const format: StatsDFormat = {
+        format: (): StatsDArgs => ({ stat: "stat" })
+      };
+      const reporter = new StatsDReporter({ format });
       expect(reporter).toMatchSnapshot();
     });
   });
 
   describe("timing", (): void => {
     it("Reports timing metric", (): void => {
-      const mockTiming = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockTiming);
       const reporter = getReporter();
+      const mockTiming = jest
+        .spyOn(reporter.client, "timing")
+        .mockImplementation();
       reporter.timing("timing_test", 20, 0.5, { tag1: "one", tag2: "two" });
       expect(mockTiming.mock.calls).toMatchSnapshot();
     });
@@ -54,9 +61,10 @@ describe("ConsoleReporter", (): void => {
 
   describe("increment", (): void => {
     it("Reports counter metric", (): void => {
-      const mockIncrement = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockIncrement);
       const reporter = getReporter();
+      const mockIncrement = jest
+        .spyOn(reporter.client, "increment")
+        .mockImplementation();
       reporter.increment("increment_test", 0.5, { tag1: "one", tag2: "two" });
       expect(mockIncrement.mock.calls).toMatchSnapshot();
     });
@@ -64,9 +72,10 @@ describe("ConsoleReporter", (): void => {
 
   describe("incrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      const mockIncrementBy = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockIncrementBy);
       const reporter = getReporter();
+      const mockIncrementBy = jest
+        .spyOn(reporter.client, "incrementBy")
+        .mockImplementation();
       reporter.incrementBy("increment_by_test", 10, {
         tag1: "one",
         tag2: "two"
@@ -77,9 +86,10 @@ describe("ConsoleReporter", (): void => {
 
   describe("decrement", (): void => {
     it("Reports counter metric", (): void => {
-      const mockDecrement = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockDecrement);
       const reporter = getReporter();
+      const mockDecrement = jest
+        .spyOn(reporter.client, "decrement")
+        .mockImplementation();
       reporter.decrement("decrement_test", 0.5, { tag1: "one", tag2: "two" });
       expect(mockDecrement.mock.calls).toMatchSnapshot();
     });
@@ -87,9 +97,10 @@ describe("ConsoleReporter", (): void => {
 
   describe("decrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      const mockDecrementBy = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockDecrementBy);
       const reporter = getReporter();
+      const mockDecrementBy = jest
+        .spyOn(reporter.client, "decrementBy")
+        .mockImplementation();
       reporter.decrementBy("decrement_by_test", 10, {
         tag1: "one",
         tag2: "two"
@@ -100,9 +111,10 @@ describe("ConsoleReporter", (): void => {
 
   describe("gauge", (): void => {
     it("Reports gauge metric", (): void => {
-      const mockGauge = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockGauge);
       const reporter = getReporter();
+      const mockGauge = jest
+        .spyOn(reporter.client, "gauge")
+        .mockImplementation();
       reporter.gauge("gauge_test", 10, 0.5, { tag1: "one", tag2: "two" });
       expect(mockGauge.mock.calls).toMatchSnapshot();
     });
@@ -110,14 +122,26 @@ describe("ConsoleReporter", (): void => {
 
   describe("histogram", (): void => {
     it("Reports histogram metric", (): void => {
-      const mockHistogram = jest.fn();
-      jest.spyOn(console, "log").mockImplementation(mockHistogram);
       const reporter = getReporter();
+      const mockHistogram = jest
+        .spyOn(reporter.client, "histogram")
+        .mockImplementation();
       reporter.histogram("histogram_test", 20, 0.5, {
         tag1: "one",
         tag2: "two"
       });
       expect(mockHistogram.mock.calls).toMatchSnapshot();
+    });
+  });
+
+  describe("close", (): void => {
+    it("Closes the socket", (): void => {
+      const reporter = getReporter();
+      const mockClose = jest
+        .spyOn(reporter.client, "close")
+        .mockImplementation();
+      reporter.close();
+      expect(mockClose.mock.calls).toMatchSnapshot();
     });
   });
 });

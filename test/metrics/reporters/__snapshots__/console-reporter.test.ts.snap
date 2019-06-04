@@ -3,48 +3,50 @@
 exports[`ConsoleReporter Constructor Creates a ConsoleReporter 1`] = `
 ConsoleReporter {
   "context": Context {
-    "globalTags": Object {
-      "globalTag1": "global_one",
-      "globalTag2": "global_two",
-    },
+    "globalTags": Object {},
   },
-  "format": [Function],
+  "format": Object {
+    "format": [Function],
+  },
   "output": [Function],
 }
 `;
 
-exports[`ConsoleReporter Constructor Creates a ConsoleReporter with a default format value 1`] = `
-ConsoleReporter {
-  "context": Context {
-    "globalTags": Object {
-      "globalTag1": "global_one",
-      "globalTag2": "global_two",
-    },
-  },
-  "format": [Function],
-  "output": [Function],
-}
-`;
-
-exports[`ConsoleReporter Constructor Creates a ConsoleReporter with a default output value 1`] = `
-ConsoleReporter {
-  "context": Context {
-    "globalTags": Object {
-      "globalTag1": "global_one",
-      "globalTag2": "global_two",
-    },
-  },
-  "format": [Function],
-  "output": [Function],
-}
-`;
-
-exports[`ConsoleReporter Constructor Creates a ConsoleReporter without arguments 1`] = `
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter with a format 1`] = `
 ConsoleReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": [Function],
+  "format": Object {
+    "format": [Function],
+  },
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter with an output 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {},
+  },
+  "format": Object {
+    "format": [Function],
+  },
+  "output": [Function],
+}
+`;
+
+exports[`ConsoleReporter Constructor Creates a ConsoleReporter with global tags 1`] = `
+ConsoleReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": Object {
+    "format": [Function],
+  },
   "output": [Function],
 }
 `;

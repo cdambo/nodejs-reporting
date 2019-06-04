@@ -27,12 +27,10 @@ const normalizeMetricName = (name: string): string => {
   )(name);
 };
 
-const StatsDMetricObjectFormat: Format.FormatFunction = ({
-  stat,
-  tags,
-  ...args
-}): object => {
-  return { stat: normalizeMetricName(stat), ...args, tags: formatTags(tags) };
+const StatsDMetricObjectFormat: Format = {
+  format: ({ stat, tags, ...args }): object => {
+    return { stat: normalizeMetricName(stat), ...args, tags: formatTags(tags) };
+  }
 };
 
 export default StatsDMetricObjectFormat;

@@ -3,35 +3,38 @@
 exports[`InMemoryReporter Constructor Creates an InMemoryReporter 1`] = `
 InMemoryReporter {
   "context": Context {
-    "globalTags": Object {
-      "globalTag1": "global_one",
-      "globalTag2": "global_two",
-    },
+    "globalTags": Object {},
   },
-  "format": [Function],
+  "format": Object {
+    "format": [Function],
+  },
   "reports": Array [],
 }
 `;
 
-exports[`InMemoryReporter Constructor Creates an InMemoryReporter with a default format value 1`] = `
-InMemoryReporter {
-  "context": Context {
-    "globalTags": Object {
-      "globalTag1": "global_one",
-      "globalTag2": "global_two",
-    },
-  },
-  "format": [Function],
-  "reports": Array [],
-}
-`;
-
-exports[`InMemoryReporter Constructor Creates an InMemoryReporter without arguments 1`] = `
+exports[`InMemoryReporter Constructor Creates an InMemoryReporter with a format 1`] = `
 InMemoryReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": [Function],
+  "format": Object {
+    "format": [Function],
+  },
+  "reports": Array [],
+}
+`;
+
+exports[`InMemoryReporter Constructor Creates an InMemoryReporter with global tags 1`] = `
+InMemoryReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
+  "format": Object {
+    "format": [Function],
+  },
   "reports": Array [],
 }
 `;
@@ -149,10 +152,10 @@ Array [
       "sampleRate": 0.5,
       "stat": "timing_test",
       "tags": Object {
-        "globalTag1": "global_one",
-        "globalTag2": "global_two",
-        "tag1": "one",
-        "tag2": "two",
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
       },
       "time": 20,
     },
@@ -217,10 +220,10 @@ Array [
       "sampleRate": 0.5,
       "stat": "timing_test",
       "tags": Object {
-        "globalTag1": "global_one",
-        "globalTag2": "global_two",
-        "tag1": "one",
-        "tag2": "two",
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+        "tag_1": "one",
+        "tag_2": "two",
       },
       "time": 20,
     },

@@ -6,13 +6,13 @@ const getReporter = (): InMemoryReporter =>
     globalTags: { globalTag1: "global_one", globalTag2: "global_two" }
   });
 
-const expectReportToBeInMemory = (
+const reportsOf = (
   method: keyof InMemoryReporter,
   ...args: unknown[]
-): void => {
+): unknown[] => {
   const reporter = getReporter();
   invoke(reporter, method, ...args);
-  expect(reporter.reports).toMatchSnapshot();
+  return reporter.reports;
 };
 
 describe("InMemoryReporter", (): void => {
@@ -38,64 +38,78 @@ describe("InMemoryReporter", (): void => {
 
   describe("timing", (): void => {
     it("Reports timing metric", (): void => {
-      expectReportToBeInMemory("timing", "timing_test", 20, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("timing", "timing_test", 20, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("increment", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportToBeInMemory("increment", "increment_test", 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("increment", "increment_test", 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("incrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportToBeInMemory("incrementBy", "increment_by_test", 10, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("incrementBy", "increment_by_test", 10, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("decrement", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportToBeInMemory("decrement", "decrement_test", 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("decrement", "decrement_test", 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("decrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportToBeInMemory("decrementBy", "decrement_by_test", 10, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("decrementBy", "decrement_by_test", 10, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("gauge", (): void => {
     it("Reports gauge metric", (): void => {
-      expectReportToBeInMemory("gauge", "gauge_test", 10, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("gauge", "gauge_test", 10, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("histogram", (): void => {
     it("Reports histogram metric", (): void => {
-      expectReportToBeInMemory("histogram", "histogram_test", 20, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("histogram", "histogram_test", 20, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 

@@ -14,10 +14,10 @@ const getReporter = (): MultiReporter =>
     ]
   });
 
-const expectReportersToBeCalled = (
+const reportsOf = (
   method: keyof MetricsReporter,
   ...args: unknown[]
-): void => {
+): ReturnType<typeof jest.spyOn>[] => {
   const multiReporter = getReporter();
   const mocks = map(
     multiReporter.reporters,
@@ -25,9 +25,10 @@ const expectReportersToBeCalled = (
       jest.spyOn(reporter, method).mockImplementation()
   );
   invoke(multiReporter, method, ...args);
-  mocks.forEach(
-    (mock): ReturnType<typeof jest.spyOn> =>
-      expect(mock.mock.calls).toMatchSnapshot()
+  return map(
+    mocks,
+    (mock: ReturnType<typeof jest.spyOn>): ReturnType<typeof jest.spyOn> =>
+      mock.mock.calls
   );
 };
 
@@ -47,64 +48,78 @@ describe("MultiReporter", (): void => {
 
   describe("timing", (): void => {
     it("Reports timing metric", (): void => {
-      expectReportersToBeCalled("timing", "timing_test", 20, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("timing", "timing_test", 20, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("increment", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportersToBeCalled("increment", "increment_test", 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("increment", "increment_test", 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("incrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportersToBeCalled("incrementBy", "increment_by_test", 10, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("incrementBy", "increment_by_test", 10, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("decrement", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportersToBeCalled("decrement", "decrement_test", 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("decrement", "decrement_test", 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("decrementBy", (): void => {
     it("Reports counter metric", (): void => {
-      expectReportersToBeCalled("decrementBy", "decrement_by_test", 10, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("decrementBy", "decrement_by_test", 10, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("gauge", (): void => {
     it("Reports gauge metric", (): void => {
-      expectReportersToBeCalled("gauge", "gauge_test", 10, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("gauge", "gauge_test", 10, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 
   describe("histogram", (): void => {
     it("Reports histogram metric", (): void => {
-      expectReportersToBeCalled("histogram", "histogram_test", 20, 0.5, {
-        tag1: "one",
-        tag2: "two"
-      });
+      expect(
+        reportsOf("histogram", "histogram_test", 20, 0.5, {
+          tag1: "one",
+          tag2: "two"
+        })
+      ).toMatchSnapshot();
     });
   });
 });

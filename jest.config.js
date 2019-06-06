@@ -20,5 +20,6 @@ module.exports = {
     }
   },
   reporters: ["default", "jest-junit"],
-  roots: ["<rootDir>/src/", "<rootDir>/test/"]
+  roots: ["<rootDir>/src/", "<rootDir>/test/"],
+  timers: "fake"
 };

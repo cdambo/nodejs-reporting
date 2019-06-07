@@ -11,7 +11,7 @@ import reporting, {
 import MetricsReporter from "../../../src/metrics/reporters/metrics-reporter";
 import InMemoryReporter from "../../../src/metrics/reporters/in-memory-reporter";
 
-const callsOfReporters = ({
+const multipleReports = ({
   req = {},
   middlewareCreatorArgs = {},
   methods,
@@ -42,7 +42,7 @@ const callsOfReporters = ({
   );
 };
 
-const callsOfReporter = ({
+const reports = ({
   creator,
   method,
   handlerArgs = [{ thisIs: "a req" }, { thisIs: "a res" }, constant({})]
@@ -73,21 +73,21 @@ const reportsOf = ({
   const creator = (reporter: MetricsReporter): ((...args: unknown[]) => void) =>
     middlewareCreator({ reporter, ...middlewareCreatorArgs });
 
-  return callsOfReporter({ creator, method, handlerArgs });
+  return reports({ creator, method, handlerArgs });
 };
 
 describe("Http Connect", (): void => {
   it("Creates a list of reporting handlers", (): void => {
     const req = {};
     expect(
-      callsOfReporters({ req, methods: ["increment", "timing"] })
+      multipleReports({ req, methods: ["increment", "timing"] })
     ).toMatchSnapshot();
     expect(req).toMatchSnapshot();
   });
 
   it("Overrides specific handler configuration", (): void => {
     expect(
-      callsOfReporters({
+      multipleReports({
         methods: ["increment", "timing"],
         middlewareCreatorArgs: {
           handlers: [Handlers.RequestCount, Handlers.RequestTime],
@@ -270,7 +270,7 @@ describe("Http Connect", (): void => {
       ): ((...args: unknown[]) => void) =>
         invoke(requestReporting({ reporter }), creatorMethod, creatorArgs);
 
-      return callsOfReporter({ creator, method, handlerArgs });
+      return reports({ creator, method, handlerArgs });
     };
 
     describe("timing", (): void => {

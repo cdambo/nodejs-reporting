@@ -355,6 +355,18 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.134.tgz#9032b440122db3a2a56200e91191996161dde5b9"
   integrity sha512-2/O0khFUCFeDlbi7sZ7ZFRCcT812fAeOLm7Ev4KbwASkZ575TDrDcY7YyaoHdTOzKcNbfiwLYZqPmoC4wadrsw==
 
+"@types/node-dogstatsd@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@types/node-dogstatsd/-/node-dogstatsd-0.0.4.tgz#abe77c7095f3c13aa404425af6d60e340a0cf76a"
+  integrity sha512-NVWRIKk/TPmYRUEMrr5Zi4IqEHyH6pU81JY4KI274BGaQ1TAOp02sGqYeUaWK0/t5cfhJpNtCCpFqD8RA1BuQg==
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "12.0.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.7.tgz#4f2563bad652b2acb1722d7e7aae2b0ff62d192c"
+  integrity sha512-1YKeT4JitGgE4SOzyB9eMwO0nGVNkNEsm9qlIt1Lqm/tG2QEiSMTD4kS3aO6L+w5SClLVxALmIBESK6Mk5wX0A==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"

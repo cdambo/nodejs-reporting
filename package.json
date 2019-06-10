@@ -1,6 +1,6 @@
 {
   "name": "node-reporting",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Reporting of metrics, logs and tracing for Node.js applications",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/lodash": "^4.14.134",
+    "@types/node-dogstatsd": "^0.0.4",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",

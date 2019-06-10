@@ -1,15 +1,25 @@
 import { invoke, map, forEach, flatMap, constant } from "lodash";
-import reporting, {
+import {
+  requestReporting,
   requestTimeReporting,
   requestCountReporting,
   errorCountReporting,
   requestReporter,
-  requestReporting,
+  requestReporters,
   ReportingCreators,
-  Handlers
-} from "../../../src/metrics/integrations/http-connect";
-import MetricsReporter from "../../../src/metrics/reporters/metrics-reporter";
-import InMemoryReporter from "../../../src/metrics/reporters/in-memory-reporter";
+  Handlers,
+  MetricsReporter,
+  InMemoryReporter,
+  ResponseTimeFn,
+  RequestHandler
+} from "../../../src";
+
+const responseTimeFnCreator: (time?: number) => ResponseTimeFn = (
+  time = 18
+): ResponseTimeFn => (fn): RequestHandler => (req, res, next): void => {
+  fn(req, res, time);
+  next();
+};
 
 const multipleReports = ({
   req = {},
@@ -28,7 +38,7 @@ const multipleReports = ({
     (method: keyof MetricsReporter): ReturnType<typeof jest.spyOn> =>
       jest.spyOn(reporter, method).mockImplementation()
   );
-  const handlers = reporting({ reporter, ...middlewareCreatorArgs });
+  const handlers = requestReporting({ reporter, ...middlewareCreatorArgs });
   forEach(
     handlers,
     (handler: (...args: unknown[]) => void): void =>
@@ -80,7 +90,11 @@ describe("Http Connect", (): void => {
   it("Creates a list of reporting handlers", (): void => {
     const req = {};
     expect(
-      multipleReports({ req, methods: ["increment", "timing"] })
+      multipleReports({
+        req,
+        methods: ["increment", "timing"],
+        middlewareCreatorArgs: { responseTimeFn: responseTimeFnCreator() }
+      })
     ).toMatchSnapshot();
     expect(req).toMatchSnapshot();
   });
@@ -93,10 +107,12 @@ describe("Http Connect", (): void => {
           handlers: [Handlers.RequestCount, Handlers.RequestTime],
           getTags: constant({ thisIs: "a_tag" }),
           sampleRate: 0.6,
+          responseTimeFn: responseTimeFnCreator(17),
           timeReporting: {
             getTags: constant({ thisIsNot: "the_same_tag" }),
             sampleRate: 0.8,
-            stat: "what_a_stat"
+            stat: "what_a_stat",
+            responseTimeFn: responseTimeFnCreator(20)
           },
           countReporting: {
             stat: "what_another_stat"
@@ -107,12 +123,14 @@ describe("Http Connect", (): void => {
   });
 
   describe("requestTimeReporting", (): void => {
+    const middlewareCreatorArgs = { responseTimeFn: responseTimeFnCreator() };
+
     it("Reports a time metric", (): void => {
       expect(
         reportsOf({
           middlewareCreator: requestTimeReporting,
-          method: "timing",
-          handlerArgs: [{ thisIs: "a req" }, { thisIs: "a res" }, 18]
+          middlewareCreatorArgs,
+          method: "timing"
         })
       ).toMatchSnapshot();
     });
@@ -122,8 +140,7 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: { stat: "time_stat" },
-          handlerArgs: [{ thisIs: "a req" }, { thisIs: "a res" }, 18]
+          middlewareCreatorArgs: { stat: "time_stat", ...middlewareCreatorArgs }
         })
       ).toMatchSnapshot();
     });
@@ -133,8 +150,7 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: { sampleRate: 0.5 },
-          handlerArgs: [{ thisIs: "a req" }, { thisIs: "a res" }, 18]
+          middlewareCreatorArgs: { sampleRate: 0.5, ...middlewareCreatorArgs }
         })
       ).toMatchSnapshot();
     });
@@ -144,8 +160,10 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: { getTags: constant({ tag: "one" }) },
-          handlerArgs: [{ thisIs: "a req" }, { thisIs: "a res" }, 18]
+          middlewareCreatorArgs: {
+            getTags: constant({ tag: "one" }),
+            ...middlewareCreatorArgs
+          }
         })
       ).toMatchSnapshot();
     });
@@ -253,7 +271,7 @@ describe("Http Connect", (): void => {
     });
   });
 
-  describe("requestReporting", (): void => {
+  describe("requestReporters", (): void => {
     const reportsOfRequestReporting = ({
       creatorMethod,
       creatorArgs = {},
@@ -268,7 +286,7 @@ describe("Http Connect", (): void => {
       const creator = (
         reporter: MetricsReporter
       ): ((...args: unknown[]) => void) =>
-        invoke(requestReporting({ reporter }), creatorMethod, creatorArgs);
+        invoke(requestReporters({ reporter }), creatorMethod, creatorArgs);
 
       return reports({ creator, method, handlerArgs });
     };
@@ -281,10 +299,10 @@ describe("Http Connect", (): void => {
             creatorArgs: {
               stat: "request-time-reporting",
               sampleRate: 0.5,
-              getTags: constant({ one: "tag" })
+              getTags: constant({ one: "tag" }),
+              responseTimeFn: responseTimeFnCreator()
             },
-            method: "timing",
-            handlerArgs: [{ thisIs: "a req" }, { thisIs: "a res" }, 18]
+            method: "timing"
           })
         ).toMatchSnapshot();
       });
@@ -332,7 +350,7 @@ describe("Http Connect", (): void => {
       it("Adds the reporter to the req object", (): void => {
         const reporter = new InMemoryReporter();
         const req = {};
-        requestReporting({ reporter }).reqReporter()(
+        requestReporters({ reporter }).reqReporter()(
           req,
           { thisIs: "a res" },
           constant({})

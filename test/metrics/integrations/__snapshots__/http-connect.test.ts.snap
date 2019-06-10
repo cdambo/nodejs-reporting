@@ -9,7 +9,7 @@ Array [
   ],
   Array [
     "http_request_duration_seconds",
-    [Function],
+    18,
     1,
     Object {},
   ],
@@ -45,7 +45,7 @@ Object {
       "calls": Array [
         Array [
           "http_request_duration_seconds",
-          [Function],
+          18,
           1,
           Object {},
         ],
@@ -72,7 +72,7 @@ Array [
   ],
   Array [
     "what_a_stat",
-    [Function],
+    20,
     0.8,
     Object {
       "thisIsNot": "the_same_tag",
@@ -179,7 +179,7 @@ Object {
 }
 `;
 
-exports[`Http Connect requestReporting count Returns a RequestHandler 1`] = `
+exports[`Http Connect requestReporters count Returns a RequestHandler 1`] = `
 Array [
   Array [
     "request-count-reporting",
@@ -191,7 +191,7 @@ Array [
 ]
 `;
 
-exports[`Http Connect requestReporting errors Returns an ErrorHandler 1`] = `
+exports[`Http Connect requestReporters errors Returns an ErrorHandler 1`] = `
 Array [
   Array [
     "request-time-reporting",
@@ -203,7 +203,7 @@ Array [
 ]
 `;
 
-exports[`Http Connect requestReporting reqReporter Adds the reporter to the req object 1`] = `
+exports[`Http Connect requestReporters reqReporter Adds the reporter to the req object 1`] = `
 Object {
   "reporter": InMemoryReporter {
     "context": Context {
@@ -217,7 +217,7 @@ Object {
 }
 `;
 
-exports[`Http Connect requestReporting timing Returns a ResponseTimeHandler 1`] = `
+exports[`Http Connect requestReporters timing Returns a ResponseTimeHandler 1`] = `
 Array [
   Array [
     "request-time-reporting",

@@ -1,6 +1,6 @@
 import { StatsD } from "node-dogstatsd";
 import MetricsReporter, { MetricsReporterConfig } from "./metrics-reporter";
-import { StatsDFormat } from "../formats/format";
+import { StatsDFormat } from "../formats";
 import Context from "../../context";
 import DogStatsDFormat from "../formats/dogstatsd-format";
 

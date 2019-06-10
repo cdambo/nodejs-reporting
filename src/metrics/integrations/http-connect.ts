@@ -28,16 +28,21 @@ interface MetricReportingArgs {
   sampleRate?: number;
   getTags?: (req: object, res: object) => object;
 }
+export type ResponseTimeFn = (
+  fn: (req: object, res: object, time: number) => void
+) => RequestHandler;
+interface TimeMetricReportingArgs extends MetricReportingArgs {
+  responseTimeFn: ResponseTimeFn;
+}
 type ErrorMetricReportingArgs = MetricReportingArgs & {
   getTags?: (err: Error, req: object, res: object) => object;
 };
 interface HttpRequestReportingArgs extends RequestReportingArgs {
   sampleRate?: number;
   getTags?: (req: object, res: object) => object;
-  getErrorTags?: (err: Error, req: object, res: object) => object;
-  timeReporting?: MetricReportingArgs;
+  responseTimeFn?: ResponseTimeFn;
+  timeReporting?: TimeMetricReportingArgs;
   countReporting?: MetricReportingArgs;
-  errorReporting?: ErrorMetricReportingArgs;
   reqReporter?: RequestReportingArgs;
   handlers?: Handlers[];
 }
@@ -45,15 +50,17 @@ interface HttpRequestReportingArgs extends RequestReportingArgs {
 /*
  * Middleware Types
  */
-type RequestHandler = (req: object, res: object, next: () => void) => void;
-type ResponseTimeHandler = (req: object, res: object, time: number) => void;
+export type RequestHandler = (
+  req: object,
+  res: object,
+  next: () => void
+) => void;
 type ErrorHandler = (
   err: Error,
   req: object,
   res: object,
   next: (err: Error) => void
 ) => void;
-type Handler = RequestHandler | ResponseTimeHandler;
 
 /*
  * Middleware Creator Names
@@ -71,8 +78,9 @@ export enum Handlers {
 type RequestTimeReportingCreator = ({
   stat,
   sampleRate,
-  getTags
-}: MetricReportingArgs) => ResponseTimeHandler;
+  getTags,
+  responseTimeFn
+}: TimeMetricReportingArgs) => RequestHandler;
 type RequestCountReportingCreator = ({
   stat,
   sampleRate,
@@ -107,19 +115,19 @@ export const requestTimeReporting = ({
   reporter,
   stat = "http_request_duration_seconds",
   sampleRate = 1,
-  getTags = constant({})
-}: RequestReportingArgs & MetricReportingArgs): ResponseTimeHandler => (
-  req: object,
-  res: object,
-  time: number
-): void => {
-  setImmediate(
-    (): void => {
-      const tags = getTags(req, res);
-      reporter.timing(stat, time, sampleRate, tags);
+  getTags = constant({}),
+  responseTimeFn
+}: RequestReportingArgs & TimeMetricReportingArgs): RequestHandler =>
+  responseTimeFn(
+    (req, res, time): void => {
+      setImmediate(
+        (): void => {
+          const tags = getTags(req, res);
+          reporter.timing(stat, time, sampleRate, tags);
+        }
+      );
     }
   );
-};
 
 export const requestCountReporting = ({
   reporter,
@@ -171,11 +179,17 @@ export const requestReporter = ({
   next();
 };
 
-export const requestReporting: RequestReporting = ({
+export const requestReporters: RequestReporting = ({
   reporter
 }): ReportingCreators => ({
-  timing: ({ stat, sampleRate, getTags }): ResponseTimeHandler =>
-    requestTimeReporting({ reporter, stat, sampleRate, getTags }),
+  timing: ({ stat, sampleRate, getTags, responseTimeFn }): RequestHandler =>
+    requestTimeReporting({
+      reporter,
+      stat,
+      sampleRate,
+      getTags,
+      responseTimeFn
+    }),
   count: ({ stat, sampleRate, getTags }): RequestHandler =>
     requestCountReporting({ reporter, stat, sampleRate, getTags }),
   errors: ({ stat, sampleRate, getTags }): ErrorHandler =>
@@ -187,14 +201,15 @@ export default ({
   reporter,
   sampleRate,
   getTags,
+  responseTimeFn,
   timeReporting,
   countReporting,
   reqReporter,
   handlers = [Handlers.All]
-}: HttpRequestReportingArgs): Handler[] => {
-  const requestTime = (): ResponseTimeHandler =>
+}: HttpRequestReportingArgs): RequestHandler[] => {
+  const requestTime = (): RequestHandler =>
     requestTimeReporting(
-      merge({ reporter, sampleRate, getTags }, timeReporting)
+      merge({ reporter, sampleRate, getTags, responseTimeFn }, timeReporting)
     );
   const requestCount = (): RequestHandler =>
     requestCountReporting(
@@ -214,7 +229,10 @@ export default ({
 
   return flow([
     partial(intersection, keys(handlerMap)),
-    partialRight(flatMap, (h: Handlers): (() => Handler)[] => handlerMap[h]),
+    partialRight(
+      flatMap,
+      (h: Handlers): (() => RequestHandler)[] => handlerMap[h]
+    ),
     uniq,
     partialRight(flatMap, attempt)
   ])(handlers);

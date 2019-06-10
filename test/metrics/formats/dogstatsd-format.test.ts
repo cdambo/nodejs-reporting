@@ -1,4 +1,4 @@
-import DogStatsDFormat from "../../../src/metrics/formats/dogstatsd-format";
+import { DogStatsDFormat } from "../../../src";
 
 describe("DogStatsDFormat", (): void => {
   describe("format", (): void => {

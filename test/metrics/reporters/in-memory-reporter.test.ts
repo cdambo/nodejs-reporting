@@ -1,5 +1,5 @@
 import { invoke } from "lodash";
-import InMemoryReporter from "../../../src/metrics/reporters/in-memory-reporter";
+import { InMemoryReporter } from "../../../src";
 
 const getReporter = (): InMemoryReporter =>
   new InMemoryReporter({

@@ -1,6 +1,5 @@
 import { StatsD } from "node-dogstatsd";
-import StatsDReporter from "../../../src/metrics/reporters/statsd-reporter";
-import { StatsDArgs, StatsDFormat } from "../../../src/metrics/formats/format";
+import { StatsDReporter, StatsDArgs, StatsDFormat } from "../../../src";
 
 const getReporter = (): StatsDReporter =>
   new StatsDReporter({

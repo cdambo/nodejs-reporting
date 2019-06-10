@@ -1,4 +1,4 @@
-import StatsDMetricObjectFormat from "../../../src/metrics/formats/statsd-metric-object-format";
+import { StatsDMetricObjectFormat } from "../../../src";
 
 describe("StatsDMetricObjectFormat", (): void => {
   describe("format", (): void => {

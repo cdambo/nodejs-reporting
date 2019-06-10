@@ -1,4 +1,4 @@
-import Context from "../src/context";
+import { Context } from "../src";
 
 describe("Context", (): void => {
   describe("mergeTags", (): void => {

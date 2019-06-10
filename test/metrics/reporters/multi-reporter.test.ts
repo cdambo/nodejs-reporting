@@ -1,9 +1,11 @@
 import { invoke, map } from "lodash";
-import StatsDReporter from "../../../src/metrics/reporters/statsd-reporter";
-import MultiReporter from "../../../src/metrics/reporters/multi-reporter";
-import InMemoryReporter from "../../../src/metrics/reporters/in-memory-reporter";
-import ConsoleReporter from "../../../src/metrics/reporters/console-reporter";
-import MetricsReporter from "../../../src/metrics/reporters/metrics-reporter";
+import {
+  StatsDReporter,
+  MultiReporter,
+  InMemoryReporter,
+  ConsoleReporter,
+  MetricsReporter
+} from "../../../src";
 
 const getReporter = (): MultiReporter =>
   new MultiReporter({

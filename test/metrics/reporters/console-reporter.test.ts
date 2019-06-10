@@ -1,5 +1,5 @@
 import { invoke } from "lodash";
-import ConsoleReporter from "../../../src/metrics/reporters/console-reporter";
+import { ConsoleReporter } from "../../../src";
 
 const getReporter = (): ConsoleReporter =>
   new ConsoleReporter({

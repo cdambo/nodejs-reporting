@@ -22,12 +22,11 @@
   ],
   "typings": "./index.d.ts",
   "dependencies": {
-    "@types/lodash": "^4.14.134",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
-    "@types/node-dogstatsd": "^0.0.4",
+    "@types/lodash": "^4.14.134",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "eslint": "^5.16.0",
@@ -44,7 +43,6 @@
     "typescript": "^3.5.1"
   },
   "peerDependencies": {
-    "@types/node-dogstatsd": "^0.0.4",
     "node-dogstatsd": "^0.0.7"
   }
 }

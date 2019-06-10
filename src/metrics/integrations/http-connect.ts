@@ -20,30 +20,34 @@ import MetricsReporter from "../reporters/metrics-reporter";
 /*
  * Arguments Types
  */
-interface RequestReportingArgs {
-  reporter: MetricsReporter;
-}
-interface MetricReportingArgs {
-  stat?: string;
-  sampleRate?: number;
-  getTags?: (req: object, res: object) => object;
-}
 export type ResponseTimeFn = (
   fn: (req: object, res: object, time: number) => void
 ) => RequestHandler;
-interface TimeMetricReportingArgs extends MetricReportingArgs {
+type GetTagsFn = (req: object, res: object) => object;
+type GetErrorTagsFn = (err: Error, req: object, res: object) => object;
+interface ReporterArgs {
+  reporter: MetricsReporter;
+}
+interface MetricArgs {
+  stat?: string;
+  sampleRate?: number;
+}
+interface RequestMetricArgs extends MetricArgs {
+  getTags?: GetTagsFn;
+}
+interface TimeMetricArgs extends RequestMetricArgs {
   responseTimeFn: ResponseTimeFn;
 }
-type ErrorMetricReportingArgs = MetricReportingArgs & {
-  getTags?: (err: Error, req: object, res: object) => object;
-};
-interface HttpRequestReportingArgs extends RequestReportingArgs {
+interface ErrorMetricArgs extends MetricArgs {
+  getTags?: GetErrorTagsFn;
+}
+interface RequestReportingArgs extends ReporterArgs {
   sampleRate?: number;
-  getTags?: (req: object, res: object) => object;
+  getTags?: GetTagsFn;
   responseTimeFn?: ResponseTimeFn;
-  timeReporting?: TimeMetricReportingArgs;
-  countReporting?: MetricReportingArgs;
-  reqReporter?: RequestReportingArgs;
+  timeReporting?: TimeMetricArgs;
+  countReporting?: RequestMetricArgs;
+  reqReporter?: ReporterArgs;
   handlers?: Handlers[];
 }
 
@@ -80,17 +84,17 @@ type RequestTimeReportingCreator = ({
   sampleRate,
   getTags,
   responseTimeFn
-}: TimeMetricReportingArgs) => RequestHandler;
+}: TimeMetricArgs) => RequestHandler;
 type RequestCountReportingCreator = ({
   stat,
   sampleRate,
   getTags
-}: MetricReportingArgs) => RequestHandler;
+}: RequestMetricArgs) => RequestHandler;
 type ErrorCountReportingCreator = ({
   stat,
   sampleRate,
   getTags
-}: ErrorMetricReportingArgs) => ErrorHandler;
+}: ErrorMetricArgs) => ErrorHandler;
 type RequestReporterCreator = () => RequestHandler;
 export interface ReportingCreators {
   timing: RequestTimeReportingCreator;
@@ -98,9 +102,7 @@ export interface ReportingCreators {
   errors: ErrorCountReportingCreator;
   reqReporter: RequestReporterCreator;
 }
-type RequestReporting = ({
-  reporter
-}: RequestReportingArgs) => ReportingCreators;
+type RequestReporting = ({ reporter }: ReporterArgs) => ReportingCreators;
 
 /**
  * **********************************
@@ -117,7 +119,7 @@ export const requestTimeReporting = ({
   sampleRate = 1,
   getTags = constant({}),
   responseTimeFn
-}: RequestReportingArgs & TimeMetricReportingArgs): RequestHandler =>
+}: ReporterArgs & TimeMetricArgs): RequestHandler =>
   responseTimeFn(
     (req, res, time): void => {
       setImmediate(
@@ -134,7 +136,7 @@ export const requestCountReporting = ({
   stat = "http_requests_total",
   sampleRate = 1,
   getTags = constant({})
-}: RequestReportingArgs & MetricReportingArgs): RequestHandler => (
+}: ReporterArgs & RequestMetricArgs): RequestHandler => (
   req: object,
   res: object,
   next: () => void
@@ -153,7 +155,7 @@ export const errorCountReporting = ({
   stat = "http_requests_errors_total",
   sampleRate = 1,
   getTags = constant({})
-}: RequestReportingArgs & ErrorMetricReportingArgs): ErrorHandler => (
+}: ReporterArgs & ErrorMetricArgs): ErrorHandler => (
   err: Error,
   req: object,
   res: object,
@@ -168,10 +170,8 @@ export const errorCountReporting = ({
   next(err);
 };
 
-export const requestReporter = ({
-  reporter
-}: RequestReportingArgs): RequestHandler => (
-  req: RequestReportingArgs,
+export const requestReporter = ({ reporter }: ReporterArgs): RequestHandler => (
+  req: ReporterArgs,
   res: object,
   next: () => void
 ): void => {
@@ -206,7 +206,7 @@ export default ({
   countReporting,
   reqReporter,
   handlers = [Handlers.All]
-}: HttpRequestReportingArgs): RequestHandler[] => {
+}: RequestReportingArgs): RequestHandler[] => {
   const requestTime = (): RequestHandler =>
     requestTimeReporting(
       merge({ reporter, sampleRate, getTags, responseTimeFn }, timeReporting)

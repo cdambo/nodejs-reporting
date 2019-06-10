@@ -11,6 +11,7 @@ module.exports = {
   testMatch: ["**/test/**/*.test.(ts|js)"],
   testEnvironment: "node",
   preset: "ts-jest",
+  coverageReporters: ["json", "lcov", "text", "clover", "cobertura"],
   coverageThreshold: {
     global: {
       branches: 80,
@@ -19,7 +20,10 @@ module.exports = {
       statements: -10
     }
   },
-  reporters: ["default", "jest-junit"],
+  reporters: [
+    "default",
+    ["jest-junit", { outputDirectory: "junit", outputName: "./jest-junit.xml" }]
+  ],
   roots: ["<rootDir>/src/", "<rootDir>/test/"],
   timers: "fake"
 };

@@ -5,7 +5,7 @@ node_modules
 
 # testing
 coverage
-junit.xml
+junit
 
 # build
 dist

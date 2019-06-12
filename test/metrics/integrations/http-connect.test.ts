@@ -92,13 +92,21 @@ const reportsOf = ({
 };
 
 describe("Http Connect", (): void => {
+  beforeEach(
+    (): void => {
+      jest
+        .spyOn(Date, "now")
+        .mockImplementationOnce(constant(0))
+        .mockImplementationOnce(constant(18));
+    }
+  );
+
   it("Creates a list of reporting handlers", (): void => {
     const req = mockReq();
     expect(
       multipleReports({
         req,
-        methods: ["increment", "timing"],
-        middlewareCreatorArgs: { responseTimeFn: responseTimeFnCreator() }
+        methods: ["increment", "timing"]
       })
     ).toMatchSnapshot();
     expect(req).toMatchSnapshot();
@@ -128,13 +136,10 @@ describe("Http Connect", (): void => {
   });
 
   describe("requestTimeReporting", (): void => {
-    const middlewareCreatorArgs = { responseTimeFn: responseTimeFnCreator() };
-
     it("Reports a time metric", (): void => {
       expect(
         reportsOf({
           middlewareCreator: requestTimeReporting,
-          middlewareCreatorArgs,
           method: "timing"
         })
       ).toMatchSnapshot();
@@ -145,7 +150,7 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: { stat: "time_stat", ...middlewareCreatorArgs }
+          middlewareCreatorArgs: { stat: "time_stat" }
         })
       ).toMatchSnapshot();
     });
@@ -155,7 +160,7 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: { sampleRate: 0.5, ...middlewareCreatorArgs }
+          middlewareCreatorArgs: { sampleRate: 0.5 }
         })
       ).toMatchSnapshot();
     });
@@ -165,10 +170,17 @@ describe("Http Connect", (): void => {
         reportsOf({
           middlewareCreator: requestTimeReporting,
           method: "timing",
-          middlewareCreatorArgs: {
-            getTags: constant({ tag: "one" }),
-            ...middlewareCreatorArgs
-          }
+          middlewareCreatorArgs: { getTags: constant({ tag: "one" }) }
+        })
+      ).toMatchSnapshot();
+    });
+
+    it("Reports a time metric with a responseTimeFn", (): void => {
+      expect(
+        reportsOf({
+          middlewareCreator: requestTimeReporting,
+          method: "timing",
+          middlewareCreatorArgs: { responseTimeFn: responseTimeFnCreator(23) }
         })
       ).toMatchSnapshot();
     });
@@ -304,8 +316,7 @@ describe("Http Connect", (): void => {
             creatorArgs: {
               stat: "request-time-reporting",
               sampleRate: 0.5,
-              getTags: constant({ one: "tag" }),
-              responseTimeFn: responseTimeFnCreator()
+              getTags: constant({ one: "tag" })
             },
             method: "timing"
           })

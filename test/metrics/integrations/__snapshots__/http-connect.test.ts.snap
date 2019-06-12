@@ -257,6 +257,17 @@ Array [
 ]
 `;
 
+exports[`Http Connect requestTimeReporting Reports a time metric with a responseTimeFn 1`] = `
+Array [
+  Array [
+    "http_request_duration_seconds",
+    23,
+    1,
+    Object {},
+  ],
+]
+`;
+
 exports[`Http Connect requestTimeReporting Reports a time metric with a sample rate 1`] = `
 Array [
   Array [

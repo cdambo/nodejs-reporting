@@ -21,9 +21,13 @@ import MetricsReporter from "../reporters/metrics-reporter";
 /*
  * Arguments Types
  */
-export type ResponseTimeFn = (
-  fn: (req: object, res: object, time: number) => void
-) => RequestHandler;
+type ResponseTimeHandler = (
+  req: object,
+  res: object,
+  time?: number,
+  startTime?: number
+) => void;
+export type ResponseTimeFn = (fn: ResponseTimeHandler) => RequestHandler;
 type GetTagsFn = (req: object, res: object) => object;
 type GetErrorTagsFn = (err: Error, req: object, res: object) => object;
 interface ReporterArgs {
@@ -37,7 +41,7 @@ interface RequestMetricArgs extends MetricArgs {
   getTags?: GetTagsFn;
 }
 interface TimeMetricArgs extends RequestMetricArgs {
-  responseTimeFn: ResponseTimeFn;
+  responseTimeFn?: ResponseTimeFn;
 }
 interface ErrorMetricArgs extends MetricArgs {
   getTags?: GetErrorTagsFn;
@@ -136,15 +140,28 @@ export const requestTimeReporting = ({
   stat = "http_request_duration_seconds",
   sampleRate = 1,
   getTags = constant({}),
-  responseTimeFn
+  responseTimeFn = (fn: ResponseTimeHandler): RequestHandler => (
+    req,
+    res,
+    next
+  ): void => {
+    const startTime = Date.now();
+    fn(req, res, null, startTime);
+    next();
+  }
 }: ReporterArgs & TimeMetricArgs): RequestHandler =>
   responseTimeFn(
-    (req, res: ServerResponse, time): void => {
+    (req, res: ServerResponse, time, startTime): void =>
       setListeners(
         res,
-        (): void => reporter.timing(stat, time, sampleRate, getTags(req, res))
-      );
-    }
+        (): void =>
+          reporter.timing(
+            stat,
+            time || Date.now() - startTime,
+            sampleRate,
+            getTags(req, res)
+          )
+      )
   );
 
 export const requestCountReporting = ({

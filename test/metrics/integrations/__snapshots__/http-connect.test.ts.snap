@@ -58,6 +58,7 @@ Object {
       ],
     },
   },
+  "thisIs": "a request",
 }
 `;
 
@@ -176,6 +177,7 @@ Object {
     },
     "reports": Array [],
   },
+  "thisIs": "a request",
 }
 `;
 
@@ -214,6 +216,7 @@ Object {
     },
     "reports": Array [],
   },
+  "thisIs": "a request",
 }
 `;
 

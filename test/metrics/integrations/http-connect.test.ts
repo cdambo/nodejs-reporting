@@ -14,6 +14,13 @@ import {
   RequestHandler
 } from "../../../src";
 
+const mockReq = constant({ thisIs: "a request" });
+const mockRes = constant({
+  thisIs: "a response",
+  once: jest.fn((event: string, method: () => void): void => method()),
+  removeListener: jest.fn()
+});
+
 const responseTimeFnCreator: (time?: number) => ResponseTimeFn = (
   time = 18
 ): ResponseTimeFn => (fn): RequestHandler => (req, res, next): void => {
@@ -22,10 +29,10 @@ const responseTimeFnCreator: (time?: number) => ResponseTimeFn = (
 };
 
 const multipleReports = ({
-  req = {},
+  req = mockReq(),
   middlewareCreatorArgs = {},
   methods,
-  handlerArgs = [{ thisIs: "a res" }, constant({})]
+  handlerArgs = [mockRes(), constant({})]
 }: {
   req?: object;
   middlewareCreatorArgs?: object;
@@ -44,7 +51,6 @@ const multipleReports = ({
     (handler: (...args: unknown[]) => void): void =>
       handler(req, ...handlerArgs)
   );
-  jest.runAllImmediates();
   return flatMap(
     mocks,
     (mock: ReturnType<typeof jest.spyOn>): ReturnType<typeof jest.spyOn> =>
@@ -55,17 +61,16 @@ const multipleReports = ({
 const reports = ({
   creator,
   method,
-  handlerArgs = [{ thisIs: "a req" }, { thisIs: "a res" }, constant({})]
+  handlerArgs
 }: {
   creator: (reporter: MetricsReporter) => (...args: unknown[]) => void;
   method: keyof MetricsReporter;
-  handlerArgs?: unknown[];
+  handlerArgs: unknown[];
 }): ReturnType<typeof jest.spyOn> => {
   const reporter = new InMemoryReporter();
   const mockReporterMethod = jest.spyOn(reporter, method).mockImplementation();
   const handler = creator(reporter);
   handler(...handlerArgs);
-  jest.runAllImmediates();
   return mockReporterMethod.mock.calls;
 };
 
@@ -73,7 +78,7 @@ const reportsOf = ({
   middlewareCreator,
   middlewareCreatorArgs = {},
   method,
-  handlerArgs = [{ thisIs: "a req" }, { thisIs: "a res" }, constant({})]
+  handlerArgs = [mockReq(), mockRes(), constant({})]
 }: {
   middlewareCreator: (...args: unknown[]) => (...args: unknown[]) => void;
   middlewareCreatorArgs?: object;
@@ -88,7 +93,7 @@ const reportsOf = ({
 
 describe("Http Connect", (): void => {
   it("Creates a list of reporting handlers", (): void => {
-    const req = {};
+    const req = mockReq();
     expect(
       multipleReports({
         req,
@@ -213,8 +218,8 @@ describe("Http Connect", (): void => {
   describe("errorCountReporting", (): void => {
     const handlerArgs = [
       new Error(),
-      { thisIs: "a req" },
-      { thisIs: "a res" },
+      mockReq(),
+      mockRes(),
       (err: Error): Error => err
     ];
 
@@ -265,8 +270,8 @@ describe("Http Connect", (): void => {
   describe("requestReporter", (): void => {
     it("Adds the reporter to the req object", (): void => {
       const reporter = new InMemoryReporter();
-      const req = {};
-      requestReporter({ reporter })(req, { thisIs: "a res" }, constant({}));
+      const req = mockReq();
+      requestReporter({ reporter })(req, mockRes(), constant({}));
       expect(req).toMatchSnapshot();
     });
   });
@@ -276,7 +281,7 @@ describe("Http Connect", (): void => {
       creatorMethod,
       creatorArgs = {},
       method,
-      handlerArgs = [{ thisIs: "a req" }, { thisIs: "a res" }, constant({})]
+      handlerArgs = [mockReq(), mockRes(), constant({})]
     }: {
       creatorMethod: keyof ReportingCreators;
       creatorArgs?: object;
@@ -337,8 +342,8 @@ describe("Http Connect", (): void => {
             method: "increment",
             handlerArgs: [
               new Error(),
-              { thisIs: "a req" },
-              { thisIs: "a res" },
+              mockReq(),
+              mockRes(),
               (err: Error): Error => err
             ]
           })
@@ -349,10 +354,10 @@ describe("Http Connect", (): void => {
     describe("reqReporter", (): void => {
       it("Adds the reporter to the req object", (): void => {
         const reporter = new InMemoryReporter();
-        const req = {};
+        const req = mockReq();
         requestReporters({ reporter }).reqReporter()(
           req,
-          { thisIs: "a res" },
+          mockRes(),
           constant({})
         );
         expect(req).toMatchSnapshot();

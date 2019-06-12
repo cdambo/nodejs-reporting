@@ -10,6 +10,7 @@ import {
   partial,
   partialRight
 } from "lodash";
+import { ServerResponse } from "http";
 import MetricsReporter from "../reporters/metrics-reporter";
 
 /**
@@ -109,6 +110,23 @@ type RequestReporting = ({ reporter }: ReporterArgs) => ReportingCreators;
  * Http-Connect Middleware
  * **********************************
  */
+const cleanupListener = (
+  res: ServerResponse,
+  sendStats: () => void
+): (() => void) => {
+  function cleanup(): void {
+    res.removeListener("finish", sendStats);
+    res.removeListener("error", cleanup);
+    res.removeListener("close", cleanup);
+  }
+  return cleanup;
+};
+
+const setListeners = (res: ServerResponse, sendStats: () => void): void => {
+  res.once("finish", sendStats);
+  res.once("error", cleanupListener(res, sendStats));
+  res.once("close", cleanupListener(res, sendStats));
+};
 
 /*
  * Connect Middleware Creators
@@ -121,12 +139,10 @@ export const requestTimeReporting = ({
   responseTimeFn
 }: ReporterArgs & TimeMetricArgs): RequestHandler =>
   responseTimeFn(
-    (req, res, time): void => {
-      setImmediate(
-        (): void => {
-          const tags = getTags(req, res);
-          reporter.timing(stat, time, sampleRate, tags);
-        }
+    (req, res: ServerResponse, time): void => {
+      setListeners(
+        res,
+        (): void => reporter.timing(stat, time, sampleRate, getTags(req, res))
       );
     }
   );
@@ -138,14 +154,12 @@ export const requestCountReporting = ({
   getTags = constant({})
 }: ReporterArgs & RequestMetricArgs): RequestHandler => (
   req: object,
-  res: object,
+  res: ServerResponse,
   next: () => void
 ): void => {
-  setImmediate(
-    (): void => {
-      const tags = getTags(req, res);
-      reporter.increment(stat, sampleRate, tags);
-    }
+  setListeners(
+    res,
+    (): void => reporter.increment(stat, sampleRate, getTags(req, res))
   );
   next();
 };
@@ -158,14 +172,12 @@ export const errorCountReporting = ({
 }: ReporterArgs & ErrorMetricArgs): ErrorHandler => (
   err: Error,
   req: object,
-  res: object,
+  res: ServerResponse,
   next: (err: Error) => void
 ): void => {
-  setImmediate(
-    (): void => {
-      const tags = getTags(err, req, res);
-      reporter.increment(stat, sampleRate, tags);
-    }
+  setListeners(
+    res,
+    (): void => reporter.increment(stat, sampleRate, getTags(err, req, res))
   );
   next(err);
 };

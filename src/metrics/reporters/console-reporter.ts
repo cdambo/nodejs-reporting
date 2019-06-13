@@ -22,7 +22,7 @@ export default class ConsoleReporter implements MetricsReporter {
     format = StatsDStringFormat({
       colors: true,
       capitalizeMetric: true,
-      breakLength: 150,
+      breakLength: 800,
       compact: true
     })
   }: ConsoleReporterConfig = {}) {

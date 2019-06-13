@@ -40,7 +40,7 @@ describe("StatsDReporter", (): void => {
 
     it("Creates a StatsDReporter with a format", (): void => {
       const format: StatsDFormat = {
-        format: (): StatsDArgs => ({ stat: "stat" })
+        format: (): StatsDArgs => ({ stat: "stat", tags: [] })
       };
       const reporter = new StatsDReporter({ format });
       expect(reporter).toMatchSnapshot();

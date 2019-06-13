@@ -32,7 +32,7 @@ describe("ConsoleReporter", (): void => {
     });
 
     it("Creates a ConsoleReporter with a format", (): void => {
-      const format = { format: (): string => "Format" };
+      const format = { format: (): object => ({ format: "Format" }) };
       const reporter = new ConsoleReporter({ format });
       expect(reporter).toMatchSnapshot();
     });

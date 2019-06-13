@@ -30,7 +30,7 @@ describe("InMemoryReporter", (): void => {
     });
 
     it("Creates an InMemoryReporter with a format", (): void => {
-      const format = { format: (): string => "Format" };
+      const format = { format: (): object => ({ format: "Format" }) };
       const reporter = new InMemoryReporter({ format });
       expect(reporter).toMatchSnapshot();
     });

@@ -150,18 +150,15 @@ export const requestTimeReporting = ({
     next();
   }
 }: ReporterArgs & TimeMetricArgs): RequestHandler =>
-  responseTimeFn(
-    (req, res: ServerResponse, time, startTime): void =>
-      setListeners(
-        res,
-        (): void =>
-          reporter.timing(
-            stat,
-            time || Date.now() - startTime,
-            sampleRate,
-            getTags(req, res)
-          )
+  responseTimeFn((req, res: ServerResponse, time, startTime): void =>
+    setListeners(res, (): void =>
+      reporter.timing(
+        stat,
+        time || Date.now() - startTime,
+        sampleRate,
+        getTags(req, res)
       )
+    )
   );
 
 export const requestCountReporting = ({
@@ -174,9 +171,8 @@ export const requestCountReporting = ({
   res: ServerResponse,
   next: () => void
 ): void => {
-  setListeners(
-    res,
-    (): void => reporter.increment(stat, sampleRate, getTags(req, res))
+  setListeners(res, (): void =>
+    reporter.increment(stat, sampleRate, getTags(req, res))
   );
   next();
 };
@@ -192,9 +188,8 @@ export const errorCountReporting = ({
   res: ServerResponse,
   next: (err: Error) => void
 ): void => {
-  setListeners(
-    res,
-    (): void => reporter.increment(stat, sampleRate, getTags(err, req, res))
+  setListeners(res, (): void =>
+    reporter.increment(stat, sampleRate, getTags(err, req, res))
   );
   next(err);
 };

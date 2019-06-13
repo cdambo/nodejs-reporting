@@ -17,37 +17,32 @@ export default class MultiReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.timing(stat, time, sampleRate, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.timing(stat, time, sampleRate, tags)
     );
   }
 
   public increment(stat: string, sampleRate?: number, tags?: object): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.increment(stat, sampleRate, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.increment(stat, sampleRate, tags)
     );
   }
 
   public incrementBy(stat: string, value: number, tags?: object): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.incrementBy(stat, value, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.incrementBy(stat, value, tags)
     );
   }
 
   public decrement(stat: string, sampleRate?: number, tags?: object): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.decrement(stat, sampleRate, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.decrement(stat, sampleRate, tags)
     );
   }
 
   public decrementBy(stat: string, value: number, tags?: object): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.decrementBy(stat, value, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.decrementBy(stat, value, tags)
     );
   }
 
@@ -57,9 +52,8 @@ export default class MultiReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.gauge(stat, value, sampleRate, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.gauge(stat, value, sampleRate, tags)
     );
   }
 
@@ -69,9 +63,8 @@ export default class MultiReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    this.reporters.forEach(
-      (reporter: MetricsReporter): void =>
-        reporter.histogram(stat, time, sampleRate, tags)
+    this.reporters.forEach((reporter: MetricsReporter): void =>
+      reporter.histogram(stat, time, sampleRate, tags)
     );
   }
 }

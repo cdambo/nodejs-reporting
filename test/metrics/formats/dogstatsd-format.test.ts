@@ -4,7 +4,7 @@ describe("DogStatsDFormat", (): void => {
   describe("format", (): void => {
     it("Formats tags to a comma separated list of snake case tags", (): void => {
       expect(
-        DogStatsDFormat.format({
+        DogStatsDFormat().format({
           stat: "metric_name",
           value: 17,
           sampleRate: 0.8,

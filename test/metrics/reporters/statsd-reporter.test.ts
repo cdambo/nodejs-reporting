@@ -1,5 +1,5 @@
 import { StatsD } from "node-dogstatsd";
-import { StatsDReporter, StatsDArgs, StatsDFormat } from "../../../src";
+import { StatsDReporter, StatsDArgs, DogStatsDFormat } from "../../../src";
 
 const getReporter = (): StatsDReporter =>
   new StatsDReporter({
@@ -39,7 +39,7 @@ describe("StatsDReporter", (): void => {
     });
 
     it("Creates a StatsDReporter with a format", (): void => {
-      const format: StatsDFormat = {
+      const format: DogStatsDFormat = {
         format: (): StatsDArgs => ({ stat: "stat", tags: [] })
       };
       const reporter = new StatsDReporter({ format });

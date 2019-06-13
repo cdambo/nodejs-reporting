@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatsDStringFormat format Formats the metric to an object 1`] = `
+"{
+  increment: {
+    stat: 'metric_name',
+    tags: {
+      a: 1,
+      b: 2
+    }
+  }
+}"
+`;
+
+exports[`StatsDStringFormat format Formats the metric with options 1`] = `"{ INCREMENT: { stat: [32m'metric_name'[39m, tags: { a: [33m1[39m, b: [33m2[39m, c: [36m[Object][39m } } }"`;
+
+exports[`StatsDStringFormat format Formats the tags to snake case keys 1`] = `
+"{
+  increment: {
+    stat: 'metric_name',
+    tags: {
+      camel_case_tag_1: 'tagOne',
+      camel_case_tag_2: 'tag_two',
+      another_tag: 5
+    }
+  }
+}"
+`;
+
+exports[`StatsDStringFormat format Removes leading non-letters from metric name 1`] = `
+"{
+  increment: {
+    stat: 'a_real_metric',
+    tags: {}
+  }
+}"
+`;
+
+exports[`StatsDStringFormat format Replaces with an underscore characters that are not ASCII alphanumerics, underscores, or periods in metric name 1`] = `
+"{
+  increment: {
+    stat: 'a_real_Metric.Name_with_bad_chars___________9',
+    tags: {}
+  }
+}"
+`;

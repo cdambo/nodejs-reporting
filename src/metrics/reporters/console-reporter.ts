@@ -1,29 +1,34 @@
 /* eslint-disable no-console */
 import Context from "../../context";
-import StatsDMetricObjectFormat from "../formats/statsd-metric-object-format";
-import Format from "../formats/format";
+import Format, { FormatFunction } from "../formats/format";
 import MetricsReporter, { MetricsReporterConfig } from "./metrics-reporter";
+import StatsDStringFormat from "../formats/statsd-string-format";
 
 interface ConsoleReporterConfig extends MetricsReporterConfig {
-  output?: (msg: string, ...args: unknown[]) => void;
+  output?: (...args: unknown[]) => void;
   format?: Format;
 }
 
 export default class ConsoleReporter implements MetricsReporter {
   private readonly context: Context;
 
-  public readonly output: (msg: string, ...args: unknown[]) => void;
+  public readonly output: (...args: unknown[]) => void;
 
-  private readonly format: Format;
+  private readonly format: FormatFunction;
 
   public constructor({
     globalTags,
     output = console.log,
-    format = StatsDMetricObjectFormat
+    format = StatsDStringFormat({
+      colors: true,
+      capitalizeMetric: true,
+      breakLength: 150,
+      compact: true
+    })
   }: ConsoleReporterConfig = {}) {
     this.context = new Context(globalTags);
     this.output = output;
-    this.format = format;
+    this.format = format.format;
   }
 
   public timing(
@@ -33,8 +38,8 @@ export default class ConsoleReporter implements MetricsReporter {
     tags?: object
   ): void {
     this.output(
-      "TIME",
-      this.format.format({
+      this.format({
+        metric: "time",
         stat,
         time,
         sampleRate,
@@ -45,8 +50,8 @@ export default class ConsoleReporter implements MetricsReporter {
 
   public increment(stat: string, sampleRate = 1, tags?: object): void {
     this.output(
-      "INCREMENT",
-      this.format.format({
+      this.format({
+        metric: "increment",
         stat,
         sampleRate,
         tags: this.context.mergeTags(tags)
@@ -56,15 +61,19 @@ export default class ConsoleReporter implements MetricsReporter {
 
   public incrementBy(stat: string, value: number, tags?: object): void {
     this.output(
-      "INCREMENT",
-      this.format.format({ stat, value, tags: this.context.mergeTags(tags) })
+      this.format({
+        metric: "increment",
+        stat,
+        value,
+        tags: this.context.mergeTags(tags)
+      })
     );
   }
 
   public decrement(stat: string, sampleRate = 1, tags?: object): void {
     this.output(
-      "DECREMENT",
-      this.format.format({
+      this.format({
+        metric: "decrement",
         stat,
         sampleRate,
         tags: this.context.mergeTags(tags)
@@ -74,8 +83,12 @@ export default class ConsoleReporter implements MetricsReporter {
 
   public decrementBy(stat: string, value: number, tags?: object): void {
     this.output(
-      "DECREMENT",
-      this.format.format({ stat, value, tags: this.context.mergeTags(tags) })
+      this.format({
+        metric: "decrement",
+        stat,
+        value,
+        tags: this.context.mergeTags(tags)
+      })
     );
   }
 
@@ -86,8 +99,8 @@ export default class ConsoleReporter implements MetricsReporter {
     tags?: object
   ): void {
     this.output(
-      "GAUGE",
-      this.format.format({
+      this.format({
+        metric: "gauge",
         stat,
         value,
         sampleRate,
@@ -103,8 +116,8 @@ export default class ConsoleReporter implements MetricsReporter {
     tags?: object
   ): void {
     this.output(
-      "HISTOGRAM",
-      this.format.format({
+      this.format({
+        metric: "histogram",
         stat,
         time,
         sampleRate,

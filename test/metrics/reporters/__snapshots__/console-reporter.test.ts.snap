@@ -5,9 +5,7 @@ ConsoleReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "output": [Function],
 }
 `;
@@ -17,9 +15,7 @@ ConsoleReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "output": [Function],
 }
 `;
@@ -29,9 +25,7 @@ ConsoleReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "output": [Function],
 }
 `;
@@ -44,9 +38,7 @@ ConsoleReporter {
       "globalTag2": "global_two",
     },
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "output": [Function],
 }
 `;
@@ -54,15 +46,7 @@ ConsoleReporter {
 exports[`ConsoleReporter decrement Reports a counter metric 1`] = `
 Array [
   Array [
-    "DECREMENT",
-    Object {
-      "sampleRate": 1,
-      "stat": "decrement_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-    },
+    "{ DECREMENT: { stat: [32m'decrement_test'[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -70,15 +54,7 @@ Array [
 exports[`ConsoleReporter decrement Reports a counter metric with a sample rate 1`] = `
 Array [
   Array [
-    "DECREMENT",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "decrement_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-    },
+    "{ DECREMENT: { stat: [32m'decrement_test'[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -86,17 +62,7 @@ Array [
 exports[`ConsoleReporter decrement Reports a counter metric with tags 1`] = `
 Array [
   Array [
-    "DECREMENT",
-    Object {
-      "sampleRate": 1,
-      "stat": "decrement_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-    },
+    "{ DECREMENT: { stat: [32m'decrement_test'[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -104,15 +70,7 @@ Array [
 exports[`ConsoleReporter decrementBy Reports a counter metric 1`] = `
 Array [
   Array [
-    "DECREMENT",
-    Object {
-      "stat": "decrement_by_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "value": 10,
-    },
+    "{ DECREMENT: { stat: [32m'decrement_by_test'[39m, value: [33m10[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -120,17 +78,7 @@ Array [
 exports[`ConsoleReporter decrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
-    "DECREMENT",
-    Object {
-      "stat": "decrement_by_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-      "value": 10,
-    },
+    "{ DECREMENT: { stat: [32m'decrement_by_test'[39m, value: [33m10[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -138,16 +86,7 @@ Array [
 exports[`ConsoleReporter gauge Reports a gauge metric 1`] = `
 Array [
   Array [
-    "GAUGE",
-    Object {
-      "sampleRate": 1,
-      "stat": "gauge_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "value": 10,
-    },
+    "{ GAUGE: { stat: [32m'gauge_test'[39m, value: [33m10[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -155,16 +94,7 @@ Array [
 exports[`ConsoleReporter gauge Reports a gauge metric with a sample rate 1`] = `
 Array [
   Array [
-    "GAUGE",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "gauge_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "value": 10,
-    },
+    "{ GAUGE: { stat: [32m'gauge_test'[39m, value: [33m10[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -172,18 +102,7 @@ Array [
 exports[`ConsoleReporter gauge Reports a gauge metric with tags 1`] = `
 Array [
   Array [
-    "GAUGE",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "gauge_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-      "value": 10,
-    },
+    "{ GAUGE: { stat: [32m'gauge_test'[39m, value: [33m10[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -191,16 +110,7 @@ Array [
 exports[`ConsoleReporter histogram Reports a histogram metric 1`] = `
 Array [
   Array [
-    "HISTOGRAM",
-    Object {
-      "sampleRate": 1,
-      "stat": "histogram_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "time": 20,
-    },
+    "{ HISTOGRAM: { stat: [32m'histogram_test'[39m, time: [33m20[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -208,16 +118,7 @@ Array [
 exports[`ConsoleReporter histogram Reports a histogram metric with a sample rate 1`] = `
 Array [
   Array [
-    "HISTOGRAM",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "histogram_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "time": 20,
-    },
+    "{ HISTOGRAM: { stat: [32m'histogram_test'[39m, time: [33m20[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -225,18 +126,7 @@ Array [
 exports[`ConsoleReporter histogram Reports a histogram metric with tags 1`] = `
 Array [
   Array [
-    "HISTOGRAM",
-    Object {
-      "sampleRate": 1,
-      "stat": "histogram_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-      "time": 20,
-    },
+    "{ HISTOGRAM: { stat: [32m'histogram_test'[39m, time: [33m20[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -244,15 +134,7 @@ Array [
 exports[`ConsoleReporter increment Reports a counter metric 1`] = `
 Array [
   Array [
-    "INCREMENT",
-    Object {
-      "sampleRate": 1,
-      "stat": "increment_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-    },
+    "{ INCREMENT: { stat: [32m'increment_test'[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -260,15 +142,7 @@ Array [
 exports[`ConsoleReporter increment Reports a counter metric with a sample rate 1`] = `
 Array [
   Array [
-    "INCREMENT",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "increment_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-    },
+    "{ INCREMENT: { stat: [32m'increment_test'[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -276,17 +150,7 @@ Array [
 exports[`ConsoleReporter increment Reports a counter metric with tags 1`] = `
 Array [
   Array [
-    "INCREMENT",
-    Object {
-      "sampleRate": 1,
-      "stat": "increment_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-    },
+    "{ INCREMENT: { stat: [32m'increment_test'[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -294,15 +158,7 @@ Array [
 exports[`ConsoleReporter incrementBy Reports a counter metric 1`] = `
 Array [
   Array [
-    "INCREMENT",
-    Object {
-      "stat": "increment_by_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "value": 10,
-    },
+    "{ INCREMENT: { stat: [32m'increment_by_test'[39m, value: [33m10[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -310,17 +166,7 @@ Array [
 exports[`ConsoleReporter incrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
-    "INCREMENT",
-    Object {
-      "stat": "increment_by_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-      "value": 10,
-    },
+    "{ INCREMENT: { stat: [32m'increment_by_test'[39m, value: [33m10[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;
@@ -328,16 +174,7 @@ Array [
 exports[`ConsoleReporter timing Reports a timing metric 1`] = `
 Array [
   Array [
-    "TIME",
-    Object {
-      "sampleRate": 1,
-      "stat": "timing_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "time": 20,
-    },
+    "{ TIME: { stat: [32m'timing_test'[39m, time: [33m20[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -345,16 +182,7 @@ Array [
 exports[`ConsoleReporter timing Reports a timing metric with a sample rate 1`] = `
 Array [
   Array [
-    "TIME",
-    Object {
-      "sampleRate": 0.5,
-      "stat": "timing_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-      },
-      "time": 20,
-    },
+    "{ TIME: { stat: [32m'timing_test'[39m, time: [33m20[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m } } }",
   ],
 ]
 `;
@@ -362,18 +190,7 @@ Array [
 exports[`ConsoleReporter timing Reports a timing metric with tags 1`] = `
 Array [
   Array [
-    "TIME",
-    Object {
-      "sampleRate": 1,
-      "stat": "timing_test",
-      "tags": Object {
-        "global_tag_1": "global_one",
-        "global_tag_2": "global_two",
-        "tag_1": "one",
-        "tag_2": "two",
-      },
-      "time": 20,
-    },
+    "{ TIME: { stat: [32m'timing_test'[39m, time: [33m20[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;

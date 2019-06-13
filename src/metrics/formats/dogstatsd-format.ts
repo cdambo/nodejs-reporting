@@ -1,5 +1,12 @@
 import { map, snakeCase } from "lodash";
-import { StatsDArgs, StatsDFormat } from "./format";
+import Format from "./format";
+import { StatsDArgs } from "./index";
+
+export type DogStatsDFormatFunction = (...args: unknown[]) => StatsDArgs;
+
+export interface DogStatsDFormat extends Format {
+  format: DogStatsDFormatFunction;
+}
 
 /*
  * Tags should be a comma separated list of tags. Use colons for key/value tags, i.e. env:prod.
@@ -11,10 +18,8 @@ import { StatsDArgs, StatsDFormat } from "./format";
 const formatTags = (tags: object): string[] =>
   map(tags, (v: string, k: string): string => `${snakeCase(k)}:${v}`);
 
-const DogStatsDFormat: StatsDFormat = {
+export default (): DogStatsDFormat => ({
   format: ({ tags, ...args }): StatsDArgs => {
     return { tags: formatTags(tags), ...args };
   }
-};
-
-export default DogStatsDFormat;
+});

@@ -15,26 +15,20 @@ MultiReporter {
       "context": Context {
         "globalTags": Object {},
       },
-      "format": Object {
-        "format": [Function],
-      },
+      "format": [Function],
     },
     InMemoryReporter {
       "context": Context {
         "globalTags": Object {},
       },
-      "format": Object {
-        "format": [Function],
-      },
+      "format": [Function],
       "reports": Array [],
     },
     ConsoleReporter {
       "context": Context {
         "globalTags": Object {},
       },
-      "format": Object {
-        "format": [Function],
-      },
+      "format": [Function],
       "output": [Function],
     },
   ],

@@ -22,9 +22,7 @@ Object {
     "context": Context {
       "globalTags": Object {},
     },
-    "format": Object {
-      "format": [Function],
-    },
+    "format": [Function],
     "increment": [MockFunction] {
       "calls": Array [
         Array [
@@ -172,9 +170,7 @@ Object {
     "context": Context {
       "globalTags": Object {},
     },
-    "format": Object {
-      "format": [Function],
-    },
+    "format": [Function],
     "reports": Array [],
   },
   "thisIs": "a request",
@@ -211,9 +207,7 @@ Object {
     "context": Context {
       "globalTags": Object {},
     },
-    "format": Object {
-      "format": [Function],
-    },
+    "format": [Function],
     "reports": Array [],
   },
   "thisIs": "a request",

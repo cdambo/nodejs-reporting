@@ -46,10 +46,8 @@ const multipleReports = ({
       jest.spyOn(reporter, method).mockImplementation()
   );
   const handlers = requestReporting({ reporter, ...middlewareCreatorArgs });
-  forEach(
-    handlers,
-    (handler: (...args: unknown[]) => void): void =>
-      handler(req, ...handlerArgs)
+  forEach(handlers, (handler: (...args: unknown[]) => void): void =>
+    handler(req, ...handlerArgs)
   );
   return flatMap(
     mocks,
@@ -92,14 +90,12 @@ const reportsOf = ({
 };
 
 describe("Http Connect", (): void => {
-  beforeEach(
-    (): void => {
-      jest
-        .spyOn(Date, "now")
-        .mockImplementationOnce(constant(0))
-        .mockImplementationOnce(constant(18));
-    }
-  );
+  beforeEach((): void => {
+    jest
+      .spyOn(Date, "now")
+      .mockImplementationOnce(constant(0))
+      .mockImplementationOnce(constant(18));
+  });
 
   it("Creates a list of reporting handlers", (): void => {
     const req = mockReq();

@@ -5,9 +5,7 @@ InMemoryReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "reports": Array [],
 }
 `;
@@ -17,9 +15,7 @@ InMemoryReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "reports": Array [],
 }
 `;
@@ -32,9 +28,7 @@ InMemoryReporter {
       "globalTag2": "global_two",
     },
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
   "reports": Array [],
 }
 `;

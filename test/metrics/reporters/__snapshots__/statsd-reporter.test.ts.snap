@@ -13,9 +13,7 @@ StatsDReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 
@@ -32,9 +30,7 @@ StatsDReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 
@@ -51,9 +47,7 @@ StatsDReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 
@@ -70,9 +64,7 @@ StatsDReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 
@@ -89,9 +81,7 @@ StatsDReporter {
   "context": Context {
     "globalTags": Object {},
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 
@@ -111,9 +101,7 @@ StatsDReporter {
       "globalTag2": "global_two",
     },
   },
-  "format": Object {
-    "format": [Function],
-  },
+  "format": [Function],
 }
 `;
 

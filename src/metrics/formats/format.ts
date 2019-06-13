@@ -1,9 +1,12 @@
 export interface StatsDArgs {
-  stat: string;
-  tags?: string[];
+  stat?: string;
+  time?: number;
+  value?: number;
+  sampleRate?: number;
+  tags: string[];
 }
 
-type FormatFunction = (...args: unknown[]) => object | string | StatsDArgs;
+type FormatFunction = (...args: unknown[]) => object;
 type StatsDFormatFunction = (...args: unknown[]) => StatsDArgs;
 
 export interface StatsDFormat {

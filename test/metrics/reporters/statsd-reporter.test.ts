@@ -48,7 +48,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("timing", (): void => {
-    it("Reports timing metric", (): void => {
+    it("Reports a timing metric", (): void => {
       const reporter = getReporter();
       const mockTiming = jest
         .spyOn(reporter.client, "timing")
@@ -59,7 +59,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("increment", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       const reporter = getReporter();
       const mockIncrement = jest
         .spyOn(reporter.client, "increment")
@@ -70,7 +70,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("incrementBy", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       const reporter = getReporter();
       const mockIncrementBy = jest
         .spyOn(reporter.client, "incrementBy")
@@ -84,7 +84,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("decrement", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       const reporter = getReporter();
       const mockDecrement = jest
         .spyOn(reporter.client, "decrement")
@@ -95,7 +95,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("decrementBy", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       const reporter = getReporter();
       const mockDecrementBy = jest
         .spyOn(reporter.client, "decrementBy")
@@ -109,7 +109,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("gauge", (): void => {
-    it("Reports gauge metric", (): void => {
+    it("Reports a gauge metric", (): void => {
       const reporter = getReporter();
       const mockGauge = jest
         .spyOn(reporter.client, "gauge")
@@ -120,7 +120,7 @@ describe("StatsDReporter", (): void => {
   });
 
   describe("histogram", (): void => {
-    it("Reports histogram metric", (): void => {
+    it("Reports a histogram metric", (): void => {
       const reporter = getReporter();
       const mockHistogram = jest
         .spyOn(reporter.client, "histogram")

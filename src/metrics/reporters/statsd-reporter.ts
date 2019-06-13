@@ -36,33 +36,38 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, time, sampleRate, tags });
 
-    this.client.timing(formatted.stat, time, sampleRate, formatted.tags);
+    this.client.timing(
+      formatted.stat,
+      formatted.time,
+      formatted.sampleRate,
+      formatted.tags
+    );
   }
 
   public increment(stat: string, sampleRate?: number, tags?: object): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, sampleRate, tags });
 
-    this.client.increment(formatted.stat, sampleRate, formatted.tags);
+    this.client.increment(formatted.stat, formatted.sampleRate, formatted.tags);
   }
 
   public incrementBy(stat: string, value: number, tags?: object): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, value, tags });
 
-    this.client.incrementBy(formatted.stat, value, formatted.tags);
+    this.client.incrementBy(formatted.stat, formatted.value, formatted.tags);
   }
 
   public decrement(stat: string, sampleRate?: number, tags?: object): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, sampleRate, tags });
 
-    this.client.decrement(formatted.stat, sampleRate, formatted.tags);
+    this.client.decrement(formatted.stat, formatted.sampleRate, formatted.tags);
   }
 
   public decrementBy(stat: string, value: number, tags?: object): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, value, tags });
 
-    this.client.decrementBy(formatted.stat, value, formatted.tags);
+    this.client.decrementBy(formatted.stat, formatted.value, formatted.tags);
   }
 
   public gauge(
@@ -71,9 +76,14 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, value, sampleRate, tags });
 
-    this.client.gauge(formatted.stat, value, sampleRate, formatted.tags);
+    this.client.gauge(
+      formatted.stat,
+      formatted.value,
+      formatted.sampleRate,
+      formatted.tags
+    );
   }
 
   public histogram(
@@ -82,9 +92,14 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format.format(stat, tags);
+    const formatted = this.format.format({ stat, time, sampleRate, tags });
 
-    this.client.histogram(formatted.stat, time, sampleRate, formatted.tags);
+    this.client.histogram(
+      formatted.stat,
+      formatted.time,
+      formatted.sampleRate,
+      formatted.tags
+    );
   }
 
   public close(): void {

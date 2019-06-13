@@ -39,11 +39,41 @@ InMemoryReporter {
 }
 `;
 
-exports[`InMemoryReporter decrement Reports counter metric 1`] = `
+exports[`InMemoryReporter decrement Reports a counter metric 1`] = `
+Array [
+  Object {
+    "decrement": Object {
+      "sampleRate": 1,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter decrement Reports a counter metric with a sample rate 1`] = `
 Array [
   Object {
     "decrement": Object {
       "sampleRate": 0.5,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter decrement Reports a counter metric with tags 1`] = `
+Array [
+  Object {
+    "decrement": Object {
+      "sampleRate": 1,
       "stat": "decrement_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -56,7 +86,22 @@ Array [
 ]
 `;
 
-exports[`InMemoryReporter decrementBy Reports counter metric 1`] = `
+exports[`InMemoryReporter decrementBy Reports a counter metric 1`] = `
+Array [
+  Object {
+    "decrement": Object {
+      "stat": "decrement_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter decrementBy Reports a counter metric with tags 1`] = `
 Array [
   Object {
     "decrement": Object {
@@ -75,11 +120,43 @@ Array [
 
 exports[`InMemoryReporter flush Flushes all reports from memory 1`] = `Array []`;
 
-exports[`InMemoryReporter gauge Reports gauge metric 1`] = `
+exports[`InMemoryReporter gauge Reports a gauge metric 1`] = `
+Array [
+  Object {
+    "gauge": Object {
+      "sampleRate": 1,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter gauge Reports a gauge metric with a sample rate 1`] = `
 Array [
   Object {
     "gauge": Object {
       "sampleRate": 0.5,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter gauge Reports a gauge metric with tags 1`] = `
+Array [
+  Object {
+    "gauge": Object {
+      "sampleRate": 1,
       "stat": "gauge_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -93,11 +170,43 @@ Array [
 ]
 `;
 
-exports[`InMemoryReporter histogram Reports histogram metric 1`] = `
+exports[`InMemoryReporter histogram Reports a histogram metric 1`] = `
+Array [
+  Object {
+    "histogram": Object {
+      "sampleRate": 1,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter histogram Reports a histogram metric with a sample rate 1`] = `
 Array [
   Object {
     "histogram": Object {
       "sampleRate": 0.5,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter histogram Reports a histogram metric with tags 1`] = `
+Array [
+  Object {
+    "histogram": Object {
+      "sampleRate": 1,
       "stat": "histogram_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -111,11 +220,41 @@ Array [
 ]
 `;
 
-exports[`InMemoryReporter increment Reports counter metric 1`] = `
+exports[`InMemoryReporter increment Reports a counter metric 1`] = `
+Array [
+  Object {
+    "increment": Object {
+      "sampleRate": 1,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter increment Reports a counter metric with a sample rate 1`] = `
 Array [
   Object {
     "increment": Object {
       "sampleRate": 0.5,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter increment Reports a counter metric with tags 1`] = `
+Array [
+  Object {
+    "increment": Object {
+      "sampleRate": 1,
       "stat": "increment_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -128,7 +267,22 @@ Array [
 ]
 `;
 
-exports[`InMemoryReporter incrementBy Reports counter metric 1`] = `
+exports[`InMemoryReporter incrementBy Reports a counter metric 1`] = `
+Array [
+  Object {
+    "increment": Object {
+      "stat": "increment_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter incrementBy Reports a counter metric with tags 1`] = `
 Array [
   Object {
     "increment": Object {
@@ -213,11 +367,43 @@ Array [
 ]
 `;
 
-exports[`InMemoryReporter timing Reports timing metric 1`] = `
+exports[`InMemoryReporter timing Reports a timing metric 1`] = `
+Array [
+  Object {
+    "time": Object {
+      "sampleRate": 1,
+      "stat": "timing_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter timing Reports a timing metric with a sample rate 1`] = `
 Array [
   Object {
     "time": Object {
       "sampleRate": 0.5,
+      "stat": "timing_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  },
+]
+`;
+
+exports[`InMemoryReporter timing Reports a timing metric with tags 1`] = `
+Array [
+  Object {
+    "time": Object {
+      "sampleRate": 1,
       "stat": "timing_test",
       "tags": Object {
         "global_tag_1": "global_one",

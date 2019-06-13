@@ -49,7 +49,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("timing", (): void => {
-    it("Reports timing metric", (): void => {
+    it("Reports a timing metric", (): void => {
       expect(
         reportsOf("timing", "timing_test", 20, 0.5, {
           tag1: "one",
@@ -60,7 +60,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("increment", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       expect(
         reportsOf("increment", "increment_test", 0.5, {
           tag1: "one",
@@ -71,7 +71,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("incrementBy", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       expect(
         reportsOf("incrementBy", "increment_by_test", 10, {
           tag1: "one",
@@ -82,7 +82,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("decrement", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       expect(
         reportsOf("decrement", "decrement_test", 0.5, {
           tag1: "one",
@@ -93,7 +93,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("decrementBy", (): void => {
-    it("Reports counter metric", (): void => {
+    it("Reports a counter metric", (): void => {
       expect(
         reportsOf("decrementBy", "decrement_by_test", 10, {
           tag1: "one",
@@ -104,7 +104,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("gauge", (): void => {
-    it("Reports gauge metric", (): void => {
+    it("Reports a gauge metric", (): void => {
       expect(
         reportsOf("gauge", "gauge_test", 10, 0.5, {
           tag1: "one",
@@ -115,7 +115,7 @@ describe("MultiReporter", (): void => {
   });
 
   describe("histogram", (): void => {
-    it("Reports histogram metric", (): void => {
+    it("Reports a histogram metric", (): void => {
       expect(
         reportsOf("histogram", "histogram_test", 20, 0.5, {
           tag1: "one",

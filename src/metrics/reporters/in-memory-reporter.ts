@@ -30,7 +30,7 @@ export default class InMemoryReporter implements MetricsReporter {
   public timing(
     stat: string,
     time: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.reports.push({
@@ -43,7 +43,7 @@ export default class InMemoryReporter implements MetricsReporter {
     });
   }
 
-  public increment(stat: string, sampleRate?: number, tags?: object): void {
+  public increment(stat: string, sampleRate = 1, tags?: object): void {
     this.reports.push({
       increment: this.format.format({
         stat,
@@ -63,7 +63,7 @@ export default class InMemoryReporter implements MetricsReporter {
     });
   }
 
-  public decrement(stat: string, sampleRate?: number, tags?: object): void {
+  public decrement(stat: string, sampleRate = 1, tags?: object): void {
     this.reports.push({
       decrement: this.format.format({
         stat,
@@ -86,7 +86,7 @@ export default class InMemoryReporter implements MetricsReporter {
   public gauge(
     stat: string,
     value: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.reports.push({
@@ -102,7 +102,7 @@ export default class InMemoryReporter implements MetricsReporter {
   public histogram(
     stat: string,
     time: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.reports.push({

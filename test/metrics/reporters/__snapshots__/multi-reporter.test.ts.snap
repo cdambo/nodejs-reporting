@@ -41,7 +41,7 @@ MultiReporter {
 }
 `;
 
-exports[`MultiReporter decrement Reports counter metric 1`] = `
+exports[`MultiReporter decrement Reports a counter metric 1`] = `
 Array [
   Array [
     Array [
@@ -76,7 +76,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter decrementBy Reports counter metric 1`] = `
+exports[`MultiReporter decrementBy Reports a counter metric 1`] = `
 Array [
   Array [
     Array [
@@ -111,7 +111,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter gauge Reports gauge metric 1`] = `
+exports[`MultiReporter gauge Reports a gauge metric 1`] = `
 Array [
   Array [
     Array [
@@ -149,7 +149,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter histogram Reports histogram metric 1`] = `
+exports[`MultiReporter histogram Reports a histogram metric 1`] = `
 Array [
   Array [
     Array [
@@ -187,7 +187,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter increment Reports counter metric 1`] = `
+exports[`MultiReporter increment Reports a counter metric 1`] = `
 Array [
   Array [
     Array [
@@ -222,7 +222,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter incrementBy Reports counter metric 1`] = `
+exports[`MultiReporter incrementBy Reports a counter metric 1`] = `
 Array [
   Array [
     Array [
@@ -257,7 +257,7 @@ Array [
 ]
 `;
 
-exports[`MultiReporter timing Reports timing metric 1`] = `
+exports[`MultiReporter timing Reports a timing metric 1`] = `
 Array [
   Array [
     Array [

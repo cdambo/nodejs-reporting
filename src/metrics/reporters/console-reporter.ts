@@ -29,7 +29,7 @@ export default class ConsoleReporter implements MetricsReporter {
   public timing(
     stat: string,
     time: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.output(
@@ -43,7 +43,7 @@ export default class ConsoleReporter implements MetricsReporter {
     );
   }
 
-  public increment(stat: string, sampleRate?: number, tags?: object): void {
+  public increment(stat: string, sampleRate = 1, tags?: object): void {
     this.output(
       "INCREMENT",
       this.format.format({
@@ -61,7 +61,7 @@ export default class ConsoleReporter implements MetricsReporter {
     );
   }
 
-  public decrement(stat: string, sampleRate?: number, tags?: object): void {
+  public decrement(stat: string, sampleRate = 1, tags?: object): void {
     this.output(
       "DECREMENT",
       this.format.format({
@@ -82,7 +82,7 @@ export default class ConsoleReporter implements MetricsReporter {
   public gauge(
     stat: string,
     value: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.output(
@@ -99,7 +99,7 @@ export default class ConsoleReporter implements MetricsReporter {
   public histogram(
     stat: string,
     time: number,
-    sampleRate?: number,
+    sampleRate = 1,
     tags?: object
   ): void {
     this.output(

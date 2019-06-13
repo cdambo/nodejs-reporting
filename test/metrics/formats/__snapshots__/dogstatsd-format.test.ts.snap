@@ -2,11 +2,13 @@
 
 exports[`DogStatsDFormat format Formats tags to a comma separated list of snake case tags 1`] = `
 Object {
+  "sampleRate": 0.8,
   "stat": "metric_name",
   "tags": Array [
     "camel_case_tag_1:tagOne",
     "camel_case_tag_2:tag_two",
     "another_tag:5",
   ],
+  "value": 17,
 }
 `;

@@ -51,12 +51,44 @@ ConsoleReporter {
 }
 `;
 
-exports[`ConsoleReporter decrement Reports counter metric 1`] = `
+exports[`ConsoleReporter decrement Reports a counter metric 1`] = `
+Array [
+  Array [
+    "DECREMENT",
+    Object {
+      "sampleRate": 1,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter decrement Reports a counter metric with a sample rate 1`] = `
 Array [
   Array [
     "DECREMENT",
     Object {
       "sampleRate": 0.5,
+      "stat": "decrement_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter decrement Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "DECREMENT",
+    Object {
+      "sampleRate": 1,
       "stat": "decrement_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -69,7 +101,23 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter decrementBy Reports counter metric 1`] = `
+exports[`ConsoleReporter decrementBy Reports a counter metric 1`] = `
+Array [
+  Array [
+    "DECREMENT",
+    Object {
+      "stat": "decrement_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter decrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
     "DECREMENT",
@@ -87,7 +135,41 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter gauge Reports gauge metric 1`] = `
+exports[`ConsoleReporter gauge Reports a gauge metric 1`] = `
+Array [
+  Array [
+    "GAUGE",
+    Object {
+      "sampleRate": 1,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter gauge Reports a gauge metric with a sample rate 1`] = `
+Array [
+  Array [
+    "GAUGE",
+    Object {
+      "sampleRate": 0.5,
+      "stat": "gauge_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter gauge Reports a gauge metric with tags 1`] = `
 Array [
   Array [
     "GAUGE",
@@ -106,12 +188,46 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter histogram Reports histogram metric 1`] = `
+exports[`ConsoleReporter histogram Reports a histogram metric 1`] = `
+Array [
+  Array [
+    "HISTOGRAM",
+    Object {
+      "sampleRate": 1,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter histogram Reports a histogram metric with a sample rate 1`] = `
 Array [
   Array [
     "HISTOGRAM",
     Object {
       "sampleRate": 0.5,
+      "stat": "histogram_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter histogram Reports a histogram metric with tags 1`] = `
+Array [
+  Array [
+    "HISTOGRAM",
+    Object {
+      "sampleRate": 1,
       "stat": "histogram_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -125,12 +241,44 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter increment Reports counter metric 1`] = `
+exports[`ConsoleReporter increment Reports a counter metric 1`] = `
+Array [
+  Array [
+    "INCREMENT",
+    Object {
+      "sampleRate": 1,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter increment Reports a counter metric with a sample rate 1`] = `
 Array [
   Array [
     "INCREMENT",
     Object {
       "sampleRate": 0.5,
+      "stat": "increment_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter increment Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "INCREMENT",
+    Object {
+      "sampleRate": 1,
       "stat": "increment_test",
       "tags": Object {
         "global_tag_1": "global_one",
@@ -143,7 +291,23 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter incrementBy Reports counter metric 1`] = `
+exports[`ConsoleReporter incrementBy Reports a counter metric 1`] = `
+Array [
+  Array [
+    "INCREMENT",
+    Object {
+      "stat": "increment_by_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "value": 10,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter incrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
     "INCREMENT",
@@ -161,12 +325,46 @@ Array [
 ]
 `;
 
-exports[`ConsoleReporter timing Reports timing metric 1`] = `
+exports[`ConsoleReporter timing Reports a timing metric 1`] = `
+Array [
+  Array [
+    "TIME",
+    Object {
+      "sampleRate": 1,
+      "stat": "timing_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter timing Reports a timing metric with a sample rate 1`] = `
 Array [
   Array [
     "TIME",
     Object {
       "sampleRate": 0.5,
+      "stat": "timing_test",
+      "tags": Object {
+        "global_tag_1": "global_one",
+        "global_tag_2": "global_two",
+      },
+      "time": 20,
+    },
+  ],
+]
+`;
+
+exports[`ConsoleReporter timing Reports a timing metric with tags 1`] = `
+Array [
+  Array [
+    "TIME",
+    Object {
+      "sampleRate": 1,
       "stat": "timing_test",
       "tags": Object {
         "global_tag_1": "global_one",

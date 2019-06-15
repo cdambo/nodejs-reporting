@@ -12,9 +12,18 @@ const reportsOf = (
 ): ReturnType<typeof jest.spyOn> => {
   const reporter = getReporter();
   const mockOutput = jest.spyOn(reporter, "output").mockImplementation();
-
   invoke(reporter, method, ...args);
   return mockOutput.mock.calls;
+};
+
+const reportsInSilentModeOf = (
+  method: keyof ConsoleReporter,
+  ...args: unknown[]
+): ReturnType<typeof jest.spyOn> => {
+  const reporter = new ConsoleReporter({ silent: true });
+  const mockOutput = jest.spyOn(reporter, "output").mockImplementation();
+  invoke(reporter, method, ...args);
+  return mockOutput;
 };
 
 describe("ConsoleReporter", (): void => {
@@ -42,6 +51,11 @@ describe("ConsoleReporter", (): void => {
       const reporter = new ConsoleReporter({ output });
       expect(reporter).toMatchSnapshot();
     });
+
+    it("Creates a ConsoleReporter with silent flag", (): void => {
+      const reporter = new ConsoleReporter({ silent: true });
+      expect(reporter).toMatchSnapshot();
+    });
   });
 
   describe("timing", (): void => {
@@ -60,6 +74,12 @@ describe("ConsoleReporter", (): void => {
           tag2: "two"
         })
       ).toMatchSnapshot();
+    });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("timing", "timing_test", 20)
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -80,6 +100,12 @@ describe("ConsoleReporter", (): void => {
         })
       ).toMatchSnapshot();
     });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("increment", "increment_test")
+      ).not.toHaveBeenCalled();
+    });
   });
 
   describe("incrementBy", (): void => {
@@ -96,6 +122,12 @@ describe("ConsoleReporter", (): void => {
           tag2: "two"
         })
       ).toMatchSnapshot();
+    });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("incrementBy", "increment_by_test", 10)
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -116,6 +148,12 @@ describe("ConsoleReporter", (): void => {
         })
       ).toMatchSnapshot();
     });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("decrement", "decrement_test")
+      ).not.toHaveBeenCalled();
+    });
   });
 
   describe("decrementBy", (): void => {
@@ -132,6 +170,12 @@ describe("ConsoleReporter", (): void => {
           tag2: "two"
         })
       ).toMatchSnapshot();
+    });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("decrementBy", "decrement_by_test", 10)
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -151,6 +195,12 @@ describe("ConsoleReporter", (): void => {
           tag2: "two"
         })
       ).toMatchSnapshot();
+    });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("gauge", "gauge_test", 10)
+      ).not.toHaveBeenCalled();
     });
   });
 
@@ -172,6 +222,12 @@ describe("ConsoleReporter", (): void => {
           tag2: "two"
         })
       ).toMatchSnapshot();
+    });
+
+    it("Does not report in silent mode", (): void => {
+      expect(
+        reportsInSilentModeOf("histogram", "histogram_test", 20)
+      ).not.toHaveBeenCalled();
     });
   });
 });

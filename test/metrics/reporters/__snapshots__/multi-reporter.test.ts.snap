@@ -30,6 +30,7 @@ MultiReporter {
       },
       "format": [Function],
       "output": [Function],
+      "silent": false,
     },
   ],
 }

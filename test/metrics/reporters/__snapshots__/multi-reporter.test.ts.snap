@@ -9,7 +9,7 @@ MultiReporter {
         "global_tags": undefined,
         "host": "localhost",
         "last_used_timer": null,
-        "port": 8125,
+        "port": 9125,
         "socket": null,
       },
       "context": Context {

@@ -7,7 +7,7 @@ StatsDReporter {
     "global_tags": undefined,
     "host": "localhost",
     "last_used_timer": null,
-    "port": 8125,
+    "port": 9125,
     "socket": null,
   },
   "context": Context {
@@ -41,7 +41,7 @@ StatsDReporter {
     "global_tags": undefined,
     "host": "localhost",
     "last_used_timer": null,
-    "port": 8125,
+    "port": 9125,
     "socket": null,
   },
   "context": Context {
@@ -58,7 +58,7 @@ StatsDReporter {
     "global_tags": undefined,
     "host": "host",
     "last_used_timer": null,
-    "port": 8125,
+    "port": 9125,
     "socket": null,
   },
   "context": Context {
@@ -92,7 +92,7 @@ StatsDReporter {
     "global_tags": undefined,
     "host": "localhost",
     "last_used_timer": null,
-    "port": 8125,
+    "port": 9125,
     "socket": null,
   },
   "context": Context {
@@ -115,8 +115,36 @@ exports[`StatsDReporter decrement Reports a counter metric 1`] = `
 Array [
   Array [
     "decrement_test",
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter decrement Reports a counter metric with a sample rate 1`] = `
+Array [
+  Array [
+    "decrement_test",
     0.5,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter decrement Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "decrement_test",
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -130,6 +158,21 @@ Array [
     "decrement_by_test",
     10,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter decrementBy Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "decrement_by_test",
+    10,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -142,8 +185,38 @@ Array [
   Array [
     "gauge_test",
     10,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter gauge Reports a gauge metric with a sample rate 1`] = `
+Array [
+  Array [
+    "gauge_test",
+    10,
     0.5,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter gauge Reports a gauge metric with tags 1`] = `
+Array [
+  Array [
+    "gauge_test",
+    10,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -156,8 +229,38 @@ Array [
   Array [
     "histogram_test",
     20,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter histogram Reports a histogram metric with a sample rate 1`] = `
+Array [
+  Array [
+    "histogram_test",
+    20,
     0.5,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter histogram Reports a histogram metric with tags 1`] = `
+Array [
+  Array [
+    "histogram_test",
+    20,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -169,8 +272,36 @@ exports[`StatsDReporter increment Reports a counter metric 1`] = `
 Array [
   Array [
     "increment_test",
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter increment Reports a counter metric with a sample rate 1`] = `
+Array [
+  Array [
+    "increment_test",
     0.5,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter increment Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "increment_test",
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -184,6 +315,21 @@ Array [
     "increment_by_test",
     10,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter incrementBy Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    "increment_by_test",
+    10,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],
@@ -196,8 +342,38 @@ Array [
   Array [
     "timing_test",
     20,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter timing Reports a timing metric with a sample rate 1`] = `
+Array [
+  Array [
+    "timing_test",
+    20,
     0.5,
     Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
+    ],
+  ],
+]
+`;
+
+exports[`StatsDReporter timing Reports a timing metric with tags 1`] = `
+Array [
+  Array [
+    "timing_test",
+    20,
+    undefined,
+    Array [
+      "global_tag_1:global_one",
+      "global_tag_2:global_two",
       "tag_1:one",
       "tag_2:two",
     ],

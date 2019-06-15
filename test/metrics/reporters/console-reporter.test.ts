@@ -146,7 +146,7 @@ describe("ConsoleReporter", (): void => {
 
     it("Reports a gauge metric with tags", (): void => {
       expect(
-        reportsOf("gauge", "gauge_test", 10, 0.5, {
+        reportsOf("gauge", "gauge_test", 10, undefined, {
           tag1: "one",
           tag2: "two"
         })

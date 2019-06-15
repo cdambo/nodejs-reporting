@@ -7,6 +7,7 @@ interface MultiReporterConfig {
 export default class MultiReporter implements MetricsReporter {
   public readonly reporters: MetricsReporter[];
 
+  // TODO: Add globalTags
   public constructor({ reporters }: MultiReporterConfig) {
     this.reporters = reporters;
   }

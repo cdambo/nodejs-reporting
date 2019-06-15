@@ -102,7 +102,7 @@ Array [
 exports[`ConsoleReporter gauge Reports a gauge metric with tags 1`] = `
 Array [
   Array [
-    "{ GAUGE: { stat: [32m'gauge_test'[39m, value: [33m10[39m, sampleRate: [33m0.5[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
+    "{ GAUGE: { stat: [32m'gauge_test'[39m, value: [33m10[39m, sampleRate: [33m1[39m, tags: { global_tag_1: [32m'global_one'[39m, global_tag_2: [32m'global_two'[39m, tag_1: [32m'one'[39m, tag_2: [32m'two'[39m } } }",
   ],
 ]
 `;

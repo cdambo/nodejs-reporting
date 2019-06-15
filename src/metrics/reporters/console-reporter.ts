@@ -16,6 +16,7 @@ export default class ConsoleReporter implements MetricsReporter {
 
   private readonly format: FormatFunction;
 
+  // TODO: Add "silent" option
   public constructor({
     globalTags,
     output = console.log,

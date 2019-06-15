@@ -22,7 +22,7 @@ export default class StatsDReporter implements MetricsReporter {
 
   public constructor({
     host = "localhost",
-    port = 8125,
+    port = 9125,
     format = DogStatsDFormat(),
     client,
     globalTags
@@ -38,7 +38,12 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format({ stat, time, sampleRate, tags });
+    const formatted = this.format({
+      stat,
+      time,
+      sampleRate,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.timing(
       formatted.stat,
@@ -49,25 +54,41 @@ export default class StatsDReporter implements MetricsReporter {
   }
 
   public increment(stat: string, sampleRate?: number, tags?: object): void {
-    const formatted = this.format({ stat, sampleRate, tags });
+    const formatted = this.format({
+      stat,
+      sampleRate,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.increment(formatted.stat, formatted.sampleRate, formatted.tags);
   }
 
   public incrementBy(stat: string, value: number, tags?: object): void {
-    const formatted = this.format({ stat, value, tags });
+    const formatted = this.format({
+      stat,
+      value,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.incrementBy(formatted.stat, formatted.value, formatted.tags);
   }
 
   public decrement(stat: string, sampleRate?: number, tags?: object): void {
-    const formatted = this.format({ stat, sampleRate, tags });
+    const formatted = this.format({
+      stat,
+      sampleRate,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.decrement(formatted.stat, formatted.sampleRate, formatted.tags);
   }
 
   public decrementBy(stat: string, value: number, tags?: object): void {
-    const formatted = this.format({ stat, value, tags });
+    const formatted = this.format({
+      stat,
+      value,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.decrementBy(formatted.stat, formatted.value, formatted.tags);
   }
@@ -78,7 +99,12 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format({ stat, value, sampleRate, tags });
+    const formatted = this.format({
+      stat,
+      value,
+      sampleRate,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.gauge(
       formatted.stat,
@@ -94,7 +120,12 @@ export default class StatsDReporter implements MetricsReporter {
     sampleRate?: number,
     tags?: object
   ): void {
-    const formatted = this.format({ stat, time, sampleRate, tags });
+    const formatted = this.format({
+      stat,
+      time,
+      sampleRate,
+      tags: this.context.mergeTags(tags)
+    });
 
     this.client.histogram(
       formatted.stat,

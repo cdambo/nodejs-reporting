@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Context from "../../context";
 import Format, { FormatFunction } from "../formats/format";
 import MetricsReporter, { MetricsReporterConfig } from "./metrics-reporter";
@@ -21,6 +20,7 @@ export default class ConsoleReporter implements MetricsReporter {
 
   public constructor({
     globalTags,
+    // eslint-disable-next-line no-console
     output = console.log,
     format = StatsDStringFormat({
       colors: true,

@@ -2,6 +2,51 @@
 
 exports[`MultiReporter Constructor Creates a MultiReporter 1`] = `
 MultiReporter {
+  "context": Context {
+    "globalTags": Object {},
+  },
+  "reporters": Array [
+    StatsDReporter {
+      "client": Client {
+        "ephemeral_socket": null,
+        "global_tags": undefined,
+        "host": "localhost",
+        "last_used_timer": null,
+        "port": 9125,
+        "socket": null,
+      },
+      "context": Context {
+        "globalTags": Object {},
+      },
+      "format": [Function],
+    },
+    InMemoryReporter {
+      "context": Context {
+        "globalTags": Object {},
+      },
+      "format": [Function],
+      "reports": Array [],
+    },
+    ConsoleReporter {
+      "context": Context {
+        "globalTags": Object {},
+      },
+      "format": [Function],
+      "output": [Function],
+      "silent": false,
+    },
+  ],
+}
+`;
+
+exports[`MultiReporter Constructor Creates a MultiReporter with global tags 1`] = `
+MultiReporter {
+  "context": Context {
+    "globalTags": Object {
+      "globalTag1": "global_one",
+      "globalTag2": "global_two",
+    },
+  },
   "reporters": Array [
     StatsDReporter {
       "client": Client {
@@ -41,7 +86,59 @@ Array [
   Array [
     Array [
       "decrement_test",
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_test",
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_test",
+      undefined,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter decrement Reports a counter metric with a sample rate 1`] = `
+Array [
+  Array [
+    Array [
+      "decrement_test",
       0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_test",
+      0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_test",
+      0.5,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter decrement Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    Array [
+      "decrement_test",
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -51,7 +148,7 @@ Array [
   Array [
     Array [
       "decrement_test",
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -61,7 +158,7 @@ Array [
   Array [
     Array [
       "decrement_test",
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -72,6 +169,32 @@ Array [
 `;
 
 exports[`MultiReporter decrementBy Reports a counter metric 1`] = `
+Array [
+  Array [
+    Array [
+      "decrement_by_test",
+      10,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_by_test",
+      10,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "decrement_by_test",
+      10,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter decrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
     Array [
@@ -112,7 +235,65 @@ Array [
     Array [
       "gauge_test",
       10,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "gauge_test",
+      10,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "gauge_test",
+      10,
+      undefined,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter gauge Reports a gauge metric with a sample rate 1`] = `
+Array [
+  Array [
+    Array [
+      "gauge_test",
+      10,
       0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "gauge_test",
+      10,
+      0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "gauge_test",
+      10,
+      0.5,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter gauge Reports a gauge metric with tags 1`] = `
+Array [
+  Array [
+    Array [
+      "gauge_test",
+      10,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -123,7 +304,7 @@ Array [
     Array [
       "gauge_test",
       10,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -134,7 +315,7 @@ Array [
     Array [
       "gauge_test",
       10,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -150,7 +331,65 @@ Array [
     Array [
       "histogram_test",
       20,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "histogram_test",
+      20,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "histogram_test",
+      20,
+      undefined,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter histogram Reports a histogram metric with a sample rate 1`] = `
+Array [
+  Array [
+    Array [
+      "histogram_test",
+      20,
       0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "histogram_test",
+      20,
+      0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "histogram_test",
+      20,
+      0.5,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter histogram Reports a histogram metric with tags 1`] = `
+Array [
+  Array [
+    Array [
+      "histogram_test",
+      20,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -161,7 +400,7 @@ Array [
     Array [
       "histogram_test",
       20,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -172,7 +411,7 @@ Array [
     Array [
       "histogram_test",
       20,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -187,7 +426,59 @@ Array [
   Array [
     Array [
       "increment_test",
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_test",
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_test",
+      undefined,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter increment Reports a counter metric with a sample rate 1`] = `
+Array [
+  Array [
+    Array [
+      "increment_test",
       0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_test",
+      0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_test",
+      0.5,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter increment Reports a counter metric with tags 1`] = `
+Array [
+  Array [
+    Array [
+      "increment_test",
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -197,7 +488,7 @@ Array [
   Array [
     Array [
       "increment_test",
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -207,7 +498,7 @@ Array [
   Array [
     Array [
       "increment_test",
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -218,6 +509,32 @@ Array [
 `;
 
 exports[`MultiReporter incrementBy Reports a counter metric 1`] = `
+Array [
+  Array [
+    Array [
+      "increment_by_test",
+      10,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_by_test",
+      10,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "increment_by_test",
+      10,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter incrementBy Reports a counter metric with tags 1`] = `
 Array [
   Array [
     Array [
@@ -258,7 +575,65 @@ Array [
     Array [
       "timing_test",
       20,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "timing_test",
+      20,
+      undefined,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "timing_test",
+      20,
+      undefined,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter timing Reports a timing metric with a sample rate 1`] = `
+Array [
+  Array [
+    Array [
+      "timing_test",
+      20,
       0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "timing_test",
+      20,
+      0.5,
+      Object {},
+    ],
+  ],
+  Array [
+    Array [
+      "timing_test",
+      20,
+      0.5,
+      Object {},
+    ],
+  ],
+]
+`;
+
+exports[`MultiReporter timing Reports a timing metric with tags 1`] = `
+Array [
+  Array [
+    Array [
+      "timing_test",
+      20,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -269,7 +644,7 @@ Array [
     Array [
       "timing_test",
       20,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",
@@ -280,7 +655,7 @@ Array [
     Array [
       "timing_test",
       20,
-      0.5,
+      undefined,
       Object {
         "tag1": "one",
         "tag2": "two",

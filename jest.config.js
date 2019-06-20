@@ -20,6 +20,7 @@ module.exports = {
       statements: -10
     }
   },
+  collectCoverageFrom: ["./src/**/*.{js,ts}"],
   reporters: [
     "default",
     ["jest-junit", { outputDirectory: "junit", outputName: "./jest-junit.xml" }]
